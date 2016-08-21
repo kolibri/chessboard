@@ -1,19 +1,23 @@
 {
-  "name": "chessboard",
-  "version": "0.0.1",
-  "description": "Displays a chessboard based on a pgn string",
-  "main": "chessboard.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "chess",
-    "chessboard",
-    "pgn"
-  ],
-  "author": "Lukas Sadzik <entengelb@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "chess.js": "^0.10.2"
-  }
+    "author": "Lukas Sadzik <entengelb@gmail.com>",
+    "dependencies": {
+        "chess.js": "^0.10.2"
+    },
+    "description": "Displays a chessboard based on a pgn string",
+    "keywords": [
+        "chess",
+        "chessboard",
+        "pgn"
+    ],
+    "license": "MIT",
+    "main": "chessboard.js",
+    "name": "chessboard",
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com:kolibri/chessboard.git"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "version": "0.0.1"
 }
