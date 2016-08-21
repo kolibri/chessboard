@@ -12,5 +12,8 @@
     "pgn"
   ],
   "author": "Lukas Sadzik <entengelb@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "chess.js": "^0.10.2"
+  }
 }

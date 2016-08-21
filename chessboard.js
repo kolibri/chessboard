@@ -1,7 +1,9 @@
+window.onload=function(){
+
 var forEach = function (array, callback, scope) {
-  for (var i = 0; i < array.length; i++) {
-    callback.call(scope, i, array[i]); // passes back stuff we need
-}
+    for (var i = 0; i < array.length; i++) {
+        callback.call(scope, i, array[i]); // passes back stuff we need
+    }
 };
 var cols = ['a','b','c','d','e','f','g','h'];
 var rows = [8,7,6,5,4,3,2,1];
@@ -89,7 +91,7 @@ function formatMove(move) {
             move.to +                                                                      // target field
             ((0 <= move.flags.indexOf('e')) ? 'ep': '') +                                  // en passant
             ((0 <= move.flags.indexOf('p')) ? move.promotion : '' );                       // promotion
-    }
+        }
 
     // add check and checkmate flags
     if (0 <= move.san.indexOf('+')) {
@@ -185,3 +187,5 @@ forEach(document.querySelectorAll('.pgn'), function (index, pgn) {
     pgn.appendChild(resetButton);
     */
 });
+
+}
