@@ -69,8 +69,6 @@ function drawPieces(board, chess) {
             var field = board.querySelector('.' + fieldname);
             var piece = chess.get(fieldname);
             field.classList.remove('wk','wq','wr','wb','wn','wp','bk','bq','br','bb','bn','bp');
-            console.log(field.classList);
-            console.log(getPieceClass(piece));
             field.classList.add(getPieceClass(piece));
             field.innerHTML = pieceToUnicode(piece);
         }
