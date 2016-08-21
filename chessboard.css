@@ -1,0 +1,62 @@
+.pgn .board {
+    width: 50vw;
+    height: 50vw;
+    border: black solid 1px;
+    float: left;
+    background-color: #white;
+}
+
+.pgn .board > div {
+    height: 12.5%;
+    margin: 0;
+    padding: 0;
+}
+
+.pgn .board .field {
+    display: inline-block;
+    width: 12.5%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 6.25vw;
+    line-height: 8vw;
+    //text-indent: -99999vw;
+}
+
+.pgn .board .black
+{
+    /*background-image: url(/img/bf-pattern.svg);*/
+    background-color: grey;
+}
+//.pgn .board .wk { background-color: #ccc }
+//.pgn .board .wq { background-color: #caa }
+//.pgn .board .wr { background-color: #aaa }
+//.pgn .board .wb { background-color: #aac }
+//.pgn .board .wn { background-color: #aca }
+//.pgn .board .wp { background-color: #cca }
+//.pgn .board .bk { background-color: #333 }
+//.pgn .board .bq { background-color: #533 }
+//.pgn .board .br { background-color: #555 }
+//.pgn .board .bb { background-color: #335 }
+//.pgn .board .bn { background-color: #353 }
+//.pgn .board .bp { background-color: #553 }
+
+.pgn .moves {
+    margin-left: 52vw;
+    height: 50vw;
+    overflow: auto;
+}
+
+.pgn .moves li {
+    margin-left: 0.5em;
+}
+
+.pgn .moves li span {
+    margin-right: 0.5em;
+    cursor: pointer;
+}
+
+.pgn .moves span:hover {
+    text-decoration: underline;
+}

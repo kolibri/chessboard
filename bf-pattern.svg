@@ -1,0 +1,8 @@
+<svg 
+    version="1.2"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none"
+    width="3px" height="3px">
+    <line x1="1"  y1="-1"  x2="4" y2="2"  stroke="black" />
+    <line x1="-1"  y1="0"  x2="3" y2="4"  stroke="black" />
+</svg>
