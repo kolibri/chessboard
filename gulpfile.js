@@ -23,6 +23,6 @@ gulp.task('less', function () {
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
-  gulp.watch(paths.scripts, ['js']);
+  gulp.watch(paths.scripts, ['minify']);
   gulp.watch(paths.styles, ['less']);
 });

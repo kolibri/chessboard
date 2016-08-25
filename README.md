@@ -47,5 +47,5 @@ Qxh1 13.Qxc6+ bxc6 14.Ba6# 1-0
 
 ## Demo
 
-Have a look at [my site](http://vogelschwarz.de/en/chess)
+Check [demo.html](demo.html) or have a look at [my site](http://vogelschwarz.de/en/chess)
 

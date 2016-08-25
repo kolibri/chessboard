@@ -16,13 +16,61 @@
   height: 100%;
   margin: 0;
   padding: 0;
-  text-align: center;
   font-size: 6.25vw;
-  line-height: 8vw;
+  line-height: 100%;
+  position: relative;
+}
+.pgn .board .field:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+}
+@-moz-document url-prefix() {
+  .pgn .board .field {
+    line-height: 125%;
+  }
 }
 .pgn .board .black {
   /*background-image: url(/img/bf-pattern.svg);*/
   background-color: grey;
+}
+.pgn .board .wk:before {
+  content: '\2654';
+}
+.pgn .board .wq:before {
+  content: '\2655';
+}
+.pgn .board .wr:before {
+  content: '\2656';
+}
+.pgn .board .wb:before {
+  content: '\2657';
+}
+.pgn .board .wn:before {
+  content: '\2658';
+}
+.pgn .board .wp:before {
+  content: '\2659';
+}
+.pgn .board .bk:before {
+  content: '\265A';
+}
+.pgn .board .bq:before {
+  content: '\265B';
+}
+.pgn .board .br:before {
+  content: '\265C';
+}
+.pgn .board .bb:before {
+  content: '\265D';
+}
+.pgn .board .bn:before {
+  content: '\265E';
+}
+.pgn .board .bp:before {
+  content: '\265F';
 }
 .pgn .moves {
   margin-left: 52vw;

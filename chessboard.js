@@ -8,58 +8,12 @@ var forEach = function (array, callback, scope) {
 var cols = ['a','b','c','d','e','f','g','h'];
 var rows = [8,7,6,5,4,3,2,1];
 
-function pieceToUnicode(piece) {
-    if (!piece) {
-        return '&nbsp';
-    }
-    if ('w' == piece.color) {
-        switch(piece.type) {
-            case 'k': return '&#9812'; break;
-            case 'q': return '&#9813'; break;
-            case 'r': return '&#9814'; break;
-            case 'b': return '&#9815'; break;
-            case 'n': return '&#9816'; break;
-            case 'p': return '&#9817'; break;
-        }
-    } else if ('b' == piece.color) {
-        switch(piece.type) {
-            case 'k': return '&#9818'; break;
-            case 'q': return '&#9819'; break;
-            case 'r': return '&#9820'; break;
-            case 'b': return '&#9821'; break;
-            case 'n': return '&#9822'; break;
-            case 'p': return '&#9823'; break;
-        }
-    }
-
-    return '&nbsp;';
-}
-
 function getPieceClass(piece) {
-    if (!piece) {
-        return null;
-    }
-    if ('w' == piece.color) {
-        switch(piece.type) {
-            case 'k': return 'wk'; break;
-            case 'q': return 'wq'; break;
-            case 'r': return 'wr'; break;
-            case 'b': return 'wb'; break;
-            case 'n': return 'wn'; break;
-            case 'p': return 'wp'; break;
-        }
-    } else if ('b' == piece.color) {
-        switch(piece.type) {
-            case 'k': return 'bk'; break;
-            case 'q': return 'bq'; break;
-            case 'r': return 'br'; break;
-            case 'b': return 'bb'; break;
-            case 'n': return 'bn'; break;
-            case 'p': return 'bp'; break;
-        }
+    if (!piece || !piece.color || !piece.type) {
+        return;
     }
 
-    return null;
+    return piece.color + piece.type;
 }
 
 function drawPieces(board, chess) {
@@ -69,8 +23,9 @@ function drawPieces(board, chess) {
             var field = board.querySelector('.' + fieldname);
             var piece = chess.get(fieldname);
             field.classList.remove('wk','wq','wr','wb','wn','wp','bk','bq','br','bb','bn','bp');
-            field.classList.add(getPieceClass(piece));
-            field.innerHTML = pieceToUnicode(piece);
+            if (pieceClass = getPieceClass(piece)) {
+                field.classList.add(pieceClass);
+            }
         }
     }
 }
@@ -210,8 +165,6 @@ forEach(document.querySelectorAll('.pgn'), function (index, pgn) {
         drawPieces(board, chess);
     });
     pgn.appendChild(nextButton);
-
-
 });
 
 }
