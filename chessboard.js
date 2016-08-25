@@ -111,7 +111,7 @@ forEach(document.querySelectorAll('.pgn'), function (index, pgn) {
     pgn.innerHTML = ''
 
     var moves = chess.history({ verbose: true })
-
+    var currentMoveIndex = moves.length;
     var filter = ['White', 'Black', 'Date', 'Event', 'Result']
     var infos = document.createElement('dl')
     pgn.appendChild(infos)
@@ -151,7 +151,6 @@ forEach(document.querySelectorAll('.pgn'), function (index, pgn) {
     // draw moves
     var movesList = document.createElement('ol');
     movesList.classList.add('moves');
-    var moveCounter = 0;
     for (m in moves) {
         if ('w' == moves[m].color) {
             var moveLi = document.createElement('li');
@@ -166,6 +165,7 @@ forEach(document.querySelectorAll('.pgn'), function (index, pgn) {
             for (n = 0; n <= this.dataset.move; n++) {
                 chess.move(moves[n]);
             }
+            currentMoveIndex = parseInt(this.dataset.move) + 1;
             drawPieces(board, chess);
         });
 
@@ -175,15 +175,43 @@ forEach(document.querySelectorAll('.pgn'), function (index, pgn) {
 
     pgn.appendChild(movesList);
 
-    /*
     var resetButton = document.createElement('button')
     resetButton.appendChild(document.createTextNode('reset'));
     resetButton.addEventListener('click', function(){
         chess.reset();
         drawPieces(board, chess);
+        currentMoveIndex = 0;
     });
     pgn.appendChild(resetButton);
-    */
+
+    var backButton = document.createElement('button')
+    backButton.appendChild(document.createTextNode('back'));
+    backButton.addEventListener('click', function(){
+        if (!currentMoveIndex > 0) {
+            return;
+        }
+        chess.undo();
+        currentMoveIndex = currentMoveIndex -1;
+        drawPieces(board, chess);
+    });
+    pgn.appendChild(backButton);
+
+    var nextButton = document.createElement('button')
+    nextButton.appendChild(document.createTextNode('next'));
+    nextButton.addEventListener('click', function(){
+        if (!(currentMoveIndex <= moves.length)) {
+            return;
+        }
+        currentMoveIndex = currentMoveIndex + 1;
+        chess.reset();
+        for (n = 1; n <= currentMoveIndex; n++) {
+            chess.move(moves[n-1])
+        }
+        drawPieces(board, chess);
+    });
+    pgn.appendChild(nextButton);
+
+
 });
 
 }
