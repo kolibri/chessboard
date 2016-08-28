@@ -12,7 +12,7 @@ Add  `div`s with class `pgn`, that contains a PGN string.
 
 There is some configuration available with `data`-attributes at the div:
 
-Example with default values
+Example with default values:
 ```html
 <div
     class="pgn"
@@ -35,7 +35,7 @@ Example with default values
 
 `data-ply`: halfmove to display at first rendering
 
-`data-headers`: List of headers, that should be show. Notice, that they start wi a capital letter, and you only can print out headers, that are given in the pgn string.
+`data-headers`: List of headers, that should be show. Notice, that they start with a capital letter, and you only can print out headers, that are given in the pgn string.
 
 `data-show-moves`: Set this to `"false"` to hide moves.
 
