@@ -73,6 +73,7 @@
   content: '\265F';
 }
 .pgn .moves {
+  margin: 0;
   margin-left: 52vw;
   height: 50vw;
   overflow: auto;
@@ -86,4 +87,8 @@
 }
 .pgn .moves li span:hover {
   text-decoration: underline;
+}
+.pgn .buttons {
+  clear: both;
+  margin-top: 1em;
 }
