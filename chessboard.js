@@ -65,21 +65,30 @@ forEach(document.querySelectorAll('.pgn'), function (index, pgn) {
     }
     pgn.innerHTML = ''
 
+    var showHeader = pgn.dataset.header ? pgn.dataset.header : true;
+    var showMoves = pgn.dataset.moves ? pgn.dataset.moves : true;
+    var showButtons = pgn.dataset.buttons ? pgn.dataset.buttons : true;
+
+    console.log(showMoves);
+
     var moves = chess.history({ verbose: true })
     var currentMoveIndex = moves.length;
-    var filter = ['White', 'Black', 'Date', 'Event', 'Result']
-    var infos = document.createElement('dl')
-    pgn.appendChild(infos)
-    infos.classList.add('info')
 
-    for (filterName in filter) {
-        var infoDt = document.createElement('dt')
-        infoDt.appendChild(document.createTextNode(filter[filterName]))
-        var infoDd = document.createElement('dd')
-        var header = chess.header()
-        infoDd.appendChild(document.createTextNode(header[filter[filterName]]))
-        infos.appendChild(infoDt)
-        infos.appendChild(infoDd)
+    if (true == showHeader) {
+        var filter = ['White', 'Black', 'Date', 'Event', 'Result']
+        var infos = document.createElement('dl')
+        pgn.appendChild(infos)
+        infos.classList.add('info')
+
+        for (filterName in filter) {
+            var infoDt = document.createElement('dt')
+            infoDt.appendChild(document.createTextNode(filter[filterName]))
+            var infoDd = document.createElement('dd')
+            var header = chess.header()
+            infoDd.appendChild(document.createTextNode(header[filter[filterName]]))
+            infos.appendChild(infoDt)
+            infos.appendChild(infoDd)
+        }
     }
 
     var board = document.createElement('div');
@@ -104,67 +113,71 @@ forEach(document.querySelectorAll('.pgn'), function (index, pgn) {
     drawPieces(board, chess);
 
     // draw moves
-    var movesList = document.createElement('ol');
-    movesList.classList.add('moves');
-    for (m in moves) {
-        if ('w' == moves[m].color) {
-            var moveLi = document.createElement('li');
-            movesList.appendChild(moveLi);
+    if (true == showMoves) {
+        var movesList = document.createElement('ol');
+        movesList.classList.add('moves');
+        for (m in moves) {
+            if ('w' == moves[m].color) {
+                var moveLi = document.createElement('li');
+                movesList.appendChild(moveLi);
+            }
+
+            var moveSpan = document.createElement('span');
+            moveSpan.dataset.move = m;
+
+            moveSpan.addEventListener('click', function(){
+                chess.reset();
+                for (n = 0; n <= this.dataset.move; n++) {
+                    chess.move(moves[n]);
+                }
+                currentMoveIndex = parseInt(this.dataset.move) + 1;
+                drawPieces(board, chess);
+            });
+
+            moveSpan.appendChild(document.createTextNode(formatMove(moves[m])));
+            moveLi.appendChild(moveSpan);
         }
 
-        var moveSpan = document.createElement('span');
-        moveSpan.dataset.move = m;
-
-        moveSpan.addEventListener('click', function(){
-            chess.reset();
-            for (n = 0; n <= this.dataset.move; n++) {
-                chess.move(moves[n]);
-            }
-            currentMoveIndex = parseInt(this.dataset.move) + 1;
-            drawPieces(board, chess);
-        });
-
-        moveSpan.appendChild(document.createTextNode(formatMove(moves[m])));
-        moveLi.appendChild(moveSpan);
+        pgn.appendChild(movesList);
     }
 
-    pgn.appendChild(movesList);
+    if (true == showButtons) {
+        var resetButton = document.createElement('button')
+        resetButton.appendChild(document.createTextNode('reset'));
+        resetButton.addEventListener('click', function(){
+            chess.reset();
+            drawPieces(board, chess);
+            currentMoveIndex = 0;
+        });
+        pgn.appendChild(resetButton);
 
-    var resetButton = document.createElement('button')
-    resetButton.appendChild(document.createTextNode('reset'));
-    resetButton.addEventListener('click', function(){
-        chess.reset();
-        drawPieces(board, chess);
-        currentMoveIndex = 0;
-    });
-    pgn.appendChild(resetButton);
+        var backButton = document.createElement('button')
+        backButton.appendChild(document.createTextNode('back'));
+        backButton.addEventListener('click', function(){
+            if (!currentMoveIndex > 0) {
+                return;
+            }
+            chess.undo();
+            currentMoveIndex = currentMoveIndex -1;
+            drawPieces(board, chess);
+        });
+        pgn.appendChild(backButton);
 
-    var backButton = document.createElement('button')
-    backButton.appendChild(document.createTextNode('back'));
-    backButton.addEventListener('click', function(){
-        if (!currentMoveIndex > 0) {
-            return;
-        }
-        chess.undo();
-        currentMoveIndex = currentMoveIndex -1;
-        drawPieces(board, chess);
-    });
-    pgn.appendChild(backButton);
-
-    var nextButton = document.createElement('button')
-    nextButton.appendChild(document.createTextNode('next'));
-    nextButton.addEventListener('click', function(){
-        if (!(currentMoveIndex <= moves.length)) {
-            return;
-        }
-        currentMoveIndex = currentMoveIndex + 1;
-        chess.reset();
-        for (n = 1; n <= currentMoveIndex; n++) {
-            chess.move(moves[n-1])
-        }
-        drawPieces(board, chess);
-    });
-    pgn.appendChild(nextButton);
+        var nextButton = document.createElement('button')
+        nextButton.appendChild(document.createTextNode('next'));
+        nextButton.addEventListener('click', function(){
+            if (!(currentMoveIndex <= moves.length)) {
+                return;
+            }
+            currentMoveIndex = currentMoveIndex + 1;
+            chess.reset();
+            for (n = 1; n <= currentMoveIndex; n++) {
+                chess.move(moves[n-1])
+            }
+            drawPieces(board, chess);
+        });
+        pgn.appendChild(nextButton);
+    }
 });
 
 }
