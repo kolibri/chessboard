@@ -67,17 +67,17 @@ forEach(document.querySelectorAll('.pgn'), function (index, pgn) {
 
     var moves = chess.history({ verbose: true })
     var currentMoveIndex = moves.length;
-    var filter = ['White', 'Black', 'Date', 'Event', 'Result']
+    var header = ['White', 'Black', 'Date', 'Event', 'Result']
     var infos = document.createElement('dl')
     pgn.appendChild(infos)
     infos.classList.add('info')
 
-    for (filterName in filter) {
+    for (headerName in header) {
         var infoDt = document.createElement('dt')
-        infoDt.appendChild(document.createTextNode(filter[filterName]))
+        infoDt.appendChild(document.createTextNode(header[headerName]))
         var infoDd = document.createElement('dd')
         var header = chess.header()
-        infoDd.appendChild(document.createTextNode(header[filter[filterName]]))
+        infoDd.appendChild(document.createTextNode(header[header[headerName]]))
         infos.appendChild(infoDt)
         infos.appendChild(infoDd)
     }
