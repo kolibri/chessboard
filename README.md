@@ -10,6 +10,39 @@ Include `chessboard.js` and `chess.js`(from [chess.js](https://github.com/jhlywa
 
 Add  `div`s with class `pgn`, that contains a PGN string.
 
+There is some configuration available with `data`-attributes at the div:
+
+Example with default values
+```html
+<div
+    class="pgn"
+    data-label-next="next"
+    data-label-back="back"
+    data-label-reset="reset"
+    data-ply=""
+    data-headers="White,Black,Date,Event,Result"
+    data-show-moves="true"
+    data-show-buttons="true"
+    data-show-header="true"
+>[pgn]</div>
+```
+
+`data-label-next`: text for the "next" button
+
+`data-label-back`: text for the "back" button
+
+`data-label-reset`: tex for the "reset" button
+
+`data-ply`: halfmove to display at first rendering
+
+`data-headers`: List of headers, that should be show. Notice, that they start wi a capital letter, and you only can print out headers, that are given in the pgn string.
+
+`data-show-moves`: Set this to `"false"` to hide moves.
+
+`data-show-buttons`: Set this to `"false"` to hide buttons
+
+`data-show-header`: Set this to `"false"` to hide headers
+
 ## Example
 
 ```html

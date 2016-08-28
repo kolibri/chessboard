@@ -18,7 +18,7 @@ window.onload=function(){
         var labelNext = pgn.dataset.labelNext ? pgn.dataset.labelNext : 'next'
         var labelBack = pgn.dataset.labelBack ? pgn.dataset.labelBack : 'back'
         var labelReset = pgn.dataset.labelReset ? pgn.dataset.labelReset : 'reset'
-        var startAtPly = pgn.dataset.ply ? pgn.dataset.ply : false
+        var startAtPly = pgn.dataset.ply ? parseInt(pgn.dataset.ply) : false
         var headers = pgn.dataset.headers ? pgn.dataset.headers.split(',') : ['White', 'Black', 'Date', 'Event', 'Result']
 
         var chess = new Chess()
@@ -30,7 +30,7 @@ window.onload=function(){
         pgn.innerHTML = ''
 
         var moves = chess.history({ verbose: true })
-        var currentMoveIndex = startAtPly ? startAtPly : moves.length
+        var currentMoveIndex = (false !== startAtPly) ? startAtPly : moves.length
 
         function drawPieces() {
             for(y in rows) {
