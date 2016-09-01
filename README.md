@@ -4,6 +4,10 @@ A (very) simple PGN viewer in JavaScript
 
 *ATTENTION: I'm not a JS developer. I hacked this together only for my purporse. So, pull request, suggestions and other kinds of feedback are VERY, VERY welcome!!!*
 
+## Demo
+
+Check [kolibri.github.io/chessboard/](https://kolibri.github.io/chessboard/) or have a look at [my site](http://vogelschwarz.de/en/chess)
+
 ## How to use
 
 Include `chessboard.js` and `chess.js`(from [chess.js](https://github.com/jhlywa/chess.js)) in your HMTL.
@@ -77,8 +81,4 @@ Qxh1 13.Qxc6+ bxc6 14.Ba6# 1-0
 </body>
 </html>
 ```
-
-## Demo
-
-Check [demo.html](demo.html) or have a look at [my site](http://vogelschwarz.de/en/chess)
 
