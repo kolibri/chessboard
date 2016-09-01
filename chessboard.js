@@ -2,10 +2,10 @@
  * Copyright (c) 2016 Lukas Sadzik <entengelb@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to 
- * deal in the Software without restriction, including without limitation the
- * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
- * sell copies of the Software, and to permit persons to whom the Software is 
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights 
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is 
  * furnished to do so, subject to the following conditions:
  *
  * The above copyright notice and this permission notice shall be included in 
@@ -13,11 +13,11 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- * IN THE SOFTWARE.
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 window.onload=function(){
     var forEach = function (array, callback, scope) {
@@ -34,16 +34,36 @@ window.onload=function(){
         var rows = [8,7,6,5,4,3,2,1]
         var headers = {}
 
-        var showMoves = pgn.dataset.showMoves ? (pgn.dataset.showMoves === 'true') : true
-        var showHeader = pgn.dataset.showHeader ? (pgn.dataset.showHeader === 'true') : true
-        var showButtons = pgn.dataset.showButtons ? (pgn.dataset.showButtons === 'true') : true
-        var reversed = pgn.dataset.reversed ? (pgn.dataset.reversed === 'true') : false
-        var labelNext = pgn.dataset.labelNext ? pgn.dataset.labelNext : 'next'
-        var labelBack = pgn.dataset.labelBack ? pgn.dataset.labelBack : 'back'
-        var labelReset = pgn.dataset.labelReset ? pgn.dataset.labelReset : 'reset'
-        var labelTurn = pgn.dataset.labelTurn ? pgn.dataset.labelTurn : 'turn'
-        var startAtPly = pgn.dataset.ply ? parseInt(pgn.dataset.ply) : false
-        var displayHeaders = pgn.dataset.headers ? pgn.dataset.headers.split(',') : ['White', 'Black', 'Date', 'Event', 'Result']
+        var showMoves = pgn.dataset.showMoves 
+            ? (pgn.dataset.showMoves === 'true') 
+            : true
+        var showHeader = pgn.dataset.showHeader 
+            ? (pgn.dataset.showHeader === 'true') 
+            : true
+        var showButtons = pgn.dataset.showButtons 
+            ? (pgn.dataset.showButtons === 'true') 
+            : true
+        var reversed = pgn.dataset.reversed 
+            ? (pgn.dataset.reversed === 'true') 
+            : false
+        var labelNext = pgn.dataset.labelNext 
+            ? pgn.dataset.labelNext 
+            : 'next'
+        var labelBack = pgn.dataset.labelBack 
+            ? pgn.dataset.labelBack 
+            : 'back'
+        var labelReset = pgn.dataset.labelReset 
+            ? pgn.dataset.labelReset 
+            : 'reset'
+        var labelTurn = pgn.dataset.labelTurn 
+            ? pgn.dataset.labelTurn 
+            : 'turn'
+        var startAtPly = pgn.dataset.ply 
+            ? parseInt(pgn.dataset.ply) 
+            : false
+        var displayHeaders = pgn.dataset.headers 
+            ? pgn.dataset.headers.split(',') 
+            : ['White', 'Black', 'Date', 'Event', 'Result']
 
         if (!chess.load_pgn(pgn.innerHTML.trim())) {
             return
@@ -55,7 +75,9 @@ window.onload=function(){
         }
 
         var moves = chess.history({ verbose: true })
-        var currentMoveIndex = (false !== startAtPly) ? startAtPly : moves.length
+        var currentMoveIndex = (false !== startAtPly) 
+            ? startAtPly 
+            : moves.length
 
         function drawPieces(board) {
             for(y in rows) {
@@ -63,7 +85,10 @@ window.onload=function(){
                     var fieldname = cols[x] + rows[y]
                     var field = board.querySelector('.' + fieldname)
                     var piece = chess.get(fieldname)
-                    field.classList.remove('wk','wq','wr','wb','wn','wp','bk','bq','br','bb','bn','bp')
+                    field.classList.remove(
+                        'wk','wq','wr','wb','wn','wp',
+                        'bk','bq','br','bb','bn','bp'
+                    )
                     if (piece && piece.color && piece.type) {
                         field.classList.add(piece.color + piece.type)
                     }
@@ -84,8 +109,8 @@ window.onload=function(){
                     ((0 <= move.flags.indexOf('c') || 0 <= move.flags.indexOf('e')) ? 'x' : '-') + // capture sign
                     move.to +                                                                      // target field
                     ((0 <= move.flags.indexOf('e')) ? 'ep': '') +                                  // en passant
-                    ((0 <= move.flags.indexOf('p')) ? move.promotion : '' )                       // promotion
-                }
+                    ((0 <= move.flags.indexOf('p')) ? move.promotion : '' )                        // promotion
+            }
 
             // add check and checkmate flags
             if (0 <= move.san.indexOf('+')) {
@@ -101,7 +126,7 @@ window.onload=function(){
         function getBoard() {
             board = document.createElement('div')
             board.classList.add('board')
-            var color = 'white' // starts at a8
+            var color = 'white'
             for(y in rows) {
                 var row = document.createElement('div')
                 for (x in cols) {
@@ -167,7 +192,9 @@ window.onload=function(){
                     moveSpan.classList.add('current')
                 }
 
-                moveSpan.appendChild(document.createTextNode(formatMove(moves[m])))
+                moveSpan.appendChild(
+                    document.createTextNode(formatMove(moves[m]))
+                )
                 moveLi.appendChild(moveSpan)
             }
 
@@ -247,7 +274,7 @@ window.onload=function(){
 
         this.init = function() {
             importHeaders()
-            render();
+            render()
         }
     }
 
@@ -255,5 +282,4 @@ window.onload=function(){
         board = new Chessboard(pgn)
         board.init()
     })
-
 }
