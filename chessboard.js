@@ -5,12 +5,14 @@ window.onload=function(){
         }
     }
 
-    var Chessboard = function(pgnDiv) {
+    var Chessboard = function(pgn) {
         var that = this
+        
+        var chess = new Chess()
         var cols = ['a','b','c','d','e','f','g','h']
         var rows = [8,7,6,5,4,3,2,1]
+        var headers = {}
 
-        var pgn = pgnDiv
         var showMoves = pgn.dataset.showMoves ? (pgn.dataset.showMoves === 'true') : true
         var showHeader = pgn.dataset.showHeader ? (pgn.dataset.showHeader === 'true') : true
         var showButtons = pgn.dataset.showButtons ? (pgn.dataset.showButtons === 'true') : true
@@ -18,12 +20,9 @@ window.onload=function(){
         var labelNext = pgn.dataset.labelNext ? pgn.dataset.labelNext : 'next'
         var labelBack = pgn.dataset.labelBack ? pgn.dataset.labelBack : 'back'
         var labelReset = pgn.dataset.labelReset ? pgn.dataset.labelReset : 'reset'
+        var labelTurn = pgn.dataset.labelTurn ? pgn.dataset.labelTurn : 'turn'
         var startAtPly = pgn.dataset.ply ? parseInt(pgn.dataset.ply) : false
         var displayHeaders = pgn.dataset.headers ? pgn.dataset.headers.split(',') : ['White', 'Black', 'Date', 'Event', 'Result']
-        var headers = {}
-
-        var chess = new Chess()
-        var board = document.createElement('div')
 
         if (!chess.load_pgn(pgn.innerHTML.trim())) {
             return
@@ -78,7 +77,7 @@ window.onload=function(){
             return moveString
         }
 
-        function drawBoard() {
+        function getBoard() {
             board = document.createElement('div')
             board.classList.add('board')
             var color = 'white' // starts at a8
@@ -126,7 +125,7 @@ window.onload=function(){
             return infos
         }
 
-        function drawMoves(board) {
+        function getMoves(board) {
             var movesList = document.createElement('ol')
             movesList.classList.add('moves')
             for (m in moves) {
@@ -154,7 +153,7 @@ window.onload=function(){
             return movesList
         }
 
-        function drawButtons() {
+        function getButtons(board) {
             var buttons = document.createElement('div')
             buttons.classList.add('buttons')
             function addButton(label, callback) {
@@ -166,7 +165,7 @@ window.onload=function(){
 
             addButton(labelReset, function(){
                 chess.reset()
-                drawPieces(board, chess)
+                drawPieces(board)
                 currentMoveIndex = 0
             })
 
@@ -184,7 +183,7 @@ window.onload=function(){
                 drawPieces(board)
             })
 
-            addButton('turn', function(){
+            addButton(labelTurn, function(){
                 reversed = !reversed
                 rows.reverse()
                 cols.reverse()
@@ -211,17 +210,17 @@ window.onload=function(){
                 pgn.appendChild(drawHeader())
             }
             gotoMove(currentMoveIndex)
-            var board = drawBoard()
+            var board = getBoard()
             drawPieces(board)
 
             pgn.appendChild(board)
 
             if (true == showMoves) {
-                pgn.appendChild(drawMoves())
+                pgn.appendChild(getMoves(board))
             }
 
             if (true == showMoves) {
-                pgn.appendChild(drawButtons())
+                pgn.appendChild(getButtons(board))
             }
         }
 
