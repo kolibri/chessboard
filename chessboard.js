@@ -1,10 +1,9 @@
 window.onload=function(){
     var forEach = function (array, callback, scope) {
         for (var i = 0; i < array.length; i++) {
-            callback.call(scope, i, array[i]) // passes back stuff we need
+            callback.call(scope, i, array[i])
         }
     }
-
 
     var Chessboard = function(pgnDiv) {
         var that = this
@@ -15,11 +14,13 @@ window.onload=function(){
         var showMoves = pgn.dataset.showMoves ? (pgn.dataset.showMoves === 'true') : true
         var showHeader = pgn.dataset.showHeader ? (pgn.dataset.showHeader === 'true') : true
         var showButtons = pgn.dataset.showButtons ? (pgn.dataset.showButtons === 'true') : true
+        var reversed = pgn.dataset.reversed ? (pgn.dataset.reversed === 'true') : false
         var labelNext = pgn.dataset.labelNext ? pgn.dataset.labelNext : 'next'
         var labelBack = pgn.dataset.labelBack ? pgn.dataset.labelBack : 'back'
         var labelReset = pgn.dataset.labelReset ? pgn.dataset.labelReset : 'reset'
         var startAtPly = pgn.dataset.ply ? parseInt(pgn.dataset.ply) : false
-        var headers = pgn.dataset.headers ? pgn.dataset.headers.split(',') : ['White', 'Black', 'Date', 'Event', 'Result']
+        var displayHeaders = pgn.dataset.headers ? pgn.dataset.headers.split(',') : ['White', 'Black', 'Date', 'Event', 'Result']
+        var headers = {}
 
         var chess = new Chess()
         var board = document.createElement('div')
@@ -27,12 +28,16 @@ window.onload=function(){
         if (!chess.load_pgn(pgn.innerHTML.trim())) {
             return
         }
-        pgn.innerHTML = ''
+
+        if (reversed) {
+            rows.reverse()
+            cols.reverse()
+        }
 
         var moves = chess.history({ verbose: true })
         var currentMoveIndex = (false !== startAtPly) ? startAtPly : moves.length
 
-        function drawPieces() {
+        function drawPieces(board) {
             for(y in rows) {
                 for (x in cols) {
                     var fieldname = cols[x] + rows[y]
@@ -76,9 +81,7 @@ window.onload=function(){
         function drawBoard() {
             board = document.createElement('div')
             board.classList.add('board')
-            pgn.appendChild(board)
-            // draw board
-            var color = 'black' // starts at a8
+            var color = 'white' // starts at a8
             for(y in rows) {
                 var row = document.createElement('div')
                 for (x in cols) {
@@ -93,27 +96,37 @@ window.onload=function(){
                 color = (color == 'white') ? 'black' : 'white'
                 board.appendChild(row)
             }
+
+            return board
         }
 
-        function drawHeader() {
-            //var filter = ['White', 'Black', 'Date', 'Event', 'Result']
-            var infos = document.createElement('dl')
-            pgn.appendChild(infos)
-            infos.classList.add('info')
-            var header = chess.header()
-            console.log(header,headers)
-            for (filterName in headers) {
-                var headerName = headers[filterName]
-                var infoDt = document.createElement('dt')
-                infoDt.appendChild(document.createTextNode(headerName))
-                var infoDd = document.createElement('dd')
-                infoDd.appendChild(document.createTextNode(header[headerName]))
-                infos.appendChild(infoDt)
-                infos.appendChild(infoDd)
+        function importHeaders() {
+            var importedHeaders = chess.header()
+            
+            for (filterName in displayHeaders) {
+                var name = displayHeaders[filterName]
+                var value = importedHeaders[name]
+
+                headers[name] = value
             }
         }
 
-        function drawMoves() {
+        function drawHeader() {
+            var infos = document.createElement('dl')
+            infos.classList.add('info')
+            for (headerName in headers) {
+                var infoDt = document.createElement('dt')
+                infoDt.appendChild(document.createTextNode(headerName))
+                var infoDd = document.createElement('dd')
+                infoDd.appendChild(document.createTextNode(headers[headerName]))
+                infos.appendChild(infoDt)
+                infos.appendChild(infoDd)
+            }
+
+            return infos
+        }
+
+        function drawMoves(board) {
             var movesList = document.createElement('ol')
             movesList.classList.add('moves')
             for (m in moves) {
@@ -127,7 +140,7 @@ window.onload=function(){
 
                 moveSpan.addEventListener('click', function(){
                     gotoMove(parseInt(this.dataset.move) + 1)
-                    drawPieces()
+                    drawPieces(board)
                 })
 
                 if (currentMoveIndex - 1 == moveSpan.dataset.move) {
@@ -138,13 +151,12 @@ window.onload=function(){
                 moveLi.appendChild(moveSpan)
             }
 
-            pgn.appendChild(movesList)
+            return movesList
         }
 
         function drawButtons() {
             var buttons = document.createElement('div')
             buttons.classList.add('buttons')
-            pgn.appendChild(buttons)
             function addButton(label, callback) {
                 var button = document.createElement('button')
                 button.appendChild(document.createTextNode(label))
@@ -164,13 +176,22 @@ window.onload=function(){
                 }
                 chess.undo()
                 currentMoveIndex = currentMoveIndex -1
-                drawPieces(board, chess)
+                drawPieces(board)
             })
 
             addButton(labelNext, function(){
                 gotoMove(currentMoveIndex + 1)
-                drawPieces(board, chess)
+                drawPieces(board)
             })
+
+            addButton('turn', function(){
+                reversed = !reversed
+                rows.reverse()
+                cols.reverse()
+                render()
+            })
+
+            return buttons
         }
 
         function gotoMove(moveIndex) {
@@ -184,29 +205,35 @@ window.onload=function(){
             currentMoveIndex = moveIndex
         }
 
-        this.render = function() {
-
+        function render() {
+            pgn.innerHTML = ''
             if (true == showHeader) {
-                drawHeader()
+                pgn.appendChild(drawHeader())
             }
-
             gotoMove(currentMoveIndex)
-            drawBoard()
-            drawPieces()
+            var board = drawBoard()
+            drawPieces(board)
+
+            pgn.appendChild(board)
 
             if (true == showMoves) {
-                drawMoves()
+                pgn.appendChild(drawMoves())
             }
 
-            if (true == showButtons) {
-                drawButtons()
+            if (true == showMoves) {
+                pgn.appendChild(drawButtons())
             }
+        }
+
+        this.init = function() {
+            importHeaders()
+            render();
         }
     }
 
     forEach(document.querySelectorAll('.pgn'), function (index, pgn) {
         board = new Chessboard(pgn)
-        board.render()
+        board.init()
     })
 
 }

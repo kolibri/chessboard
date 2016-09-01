@@ -1,6 +1,6 @@
 .pgn .board {
-  width: 50vw;
-  height: 50vw;
+  width: 25vw;
+  height: 25vw;
   border: black solid 1px;
   float: left;
   background-color: #white;
@@ -16,7 +16,7 @@
   height: 100%;
   margin: 0;
   padding: 0;
-  font-size: 6.25vw;
+  font-size: 3.125vw;
   line-height: 100%;
   position: relative;
 }
@@ -74,8 +74,8 @@
 }
 .pgn .moves {
   margin: 0;
-  margin-left: 52vw;
-  height: 50vw;
+  margin-left: 26vw;
+  height: 25vw;
   overflow: auto;
 }
 .pgn .moves li {
