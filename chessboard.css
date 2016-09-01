@@ -33,7 +33,6 @@
   }
 }
 .pgn .board .black {
-  /*background-image: url(/img/bf-pattern.svg);*/
   background-color: grey;
 }
 .pgn .board .wk:before {
