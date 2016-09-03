@@ -78,7 +78,7 @@ window.onload=function(){
             board.classList.add('board')
             pgn.appendChild(board)
             // draw board
-            var color = 'black' // starts at a8
+            var color = 'white' // starts at a8
             for(y in rows) {
                 var row = document.createElement('div')
                 for (x in cols) {
