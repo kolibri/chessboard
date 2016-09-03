@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ko.libri Chess</title>
+        <title>Chessboard Demo</title>
         <link rel="stylesheet" href="chessboard.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
+        <!--<script src="./node_modules/chess.js/chess.js"></script>//-->
         <script src="chessboard.js" type="text/javascript"></script>
     </head>
     <body>
-    <h1>Peruvian Immortal with default options</h1>
+    <h1>Chessboard Demo</h1>
+    <a href="https://github.com/kolibri/chessboard">Github Repository</a> - 
+    <a href="https://www.npmjs.com/package/chessboard">NPM Package site</a>
+    <h2>Peruvian Immortal with default options</h2>
         <div class="pgn">
 [Event "Simultaneous"]
 [Site "Budapest HUN"]
@@ -28,14 +32,15 @@
 Bxf3 8.Qxf3 Bb4 9.Be2 Nd7 10.a3 O-O-O 11.axb4 Qxa1+ 12.Kd2
 Qxh1 13.Qxc6+ bxc6 14.Ba6# 1-0
         </div>
-
-        <h1>Kasparov's Immortal with custom header, buttons and current move</h1>
+        <h1>Kasparov's Immortal with custom header, buttons, reversed side and current move</h1>
         <div
             class="pgn"
             data-label-next="&gt;&gt;"
             data-label-back="&lt;&lt;"
             data-label-reset="start"
-            data-ply=""
+            data-label-turn="flip"
+            data-ply="2"
+            data-reversed="true"
             data-headers="White,Black,Result"
             >
 [Event "Hoogovens A Tournament"]
@@ -61,7 +66,7 @@ Qc4 31. Qxf6 Kxa3 32. Qxa6+ Kxb4 33. c3+ Kxc3 34. Qa1+ Kd2
 35. Qb2+ Kd1 36. Bf1 Rd2 37. Rd7 Rxd7 38. Bxc4 bxc4 39. Qxh8
 Rd3 40. Qa8 c3 41. Qa4+ Ke1 42. f4 f5 43. Kc1 Rd2 44. Qa7 1-0
 </div>
-<h1>Kasparov's Immortal, just the board</h1>
+<h1>Nunn's Immortal, just the board</h1>
         <div
             class="pgn"
             data-show-moves="false"
@@ -87,6 +92,7 @@ Qf8 14.Ne4 Bh6 15.Qc2 Qf4 16.Ne2 Rxf2 17.Nxf2 Nf3+ 18.Kd1 Qh4
 19.Nd3 Bf5 20.Nec1 Nd2 21.hxg6 hxg6 22.Bg2 Nxc4 23.Qf2 Ne3+
 24.Ke2 Qc4 25.Bf3 Rf8 26.Rg1 Nc2 27.Kd1 Bxd3 0-1
 </div>
+
     <p style="clear: both">All pgn's from <a href="http://www.chessgames.com/index.html">www.chessgames.com</a>.
     </body>
 </html>

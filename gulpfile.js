@@ -11,7 +11,7 @@ gulp.task('default', ['minify', 'less'])
 
 gulp.task('minify', function() {
   return gulp.src(paths.scripts)
-    .pipe(minify())
+    .pipe(minify({'preserveComments': 'some'}))
     .pipe(gulp.dest('./'));
 });
 
@@ -21,7 +21,6 @@ gulp.task('less', function () {
     .pipe(gulp.dest('./'));
 });
 
-// Rerun the task when a file changes
 gulp.task('watch', function() {
   gulp.watch(paths.scripts, ['minify']);
   gulp.watch(paths.styles, ['less']);
