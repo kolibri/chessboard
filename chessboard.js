@@ -127,8 +127,11 @@ window.onload=function(){
             board = document.createElement('div')
             board.classList.add('board')
             var color = 'white'
+
             for(y in rows) {
                 var row = document.createElement('div')
+                row.classList.add('row')
+                row.classList.add('r' + rows[y])
                 for (x in cols) {
                     var field = document.createElement('div')
                     var fieldname = cols[x] + rows[y]

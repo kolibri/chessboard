@@ -5,10 +5,104 @@
   float: left;
   background-color: #white;
 }
-.pgn .board > div {
+.pgn .board .row {
+  position: relative;
   height: 12.5%;
   margin: 0;
   padding: 0;
+}
+.pgn .board .row:after {
+  position: absolute;
+  top: 0.2vw;
+  left: 0.2vw;
+  height: 100%;
+  width: 3.125%;
+  color: black;
+  font-size: 1vw;
+  text-align: left;
+}
+.pgn .board .row.r1:after {
+  content: '1';
+}
+.pgn .board .row.r2:after {
+  content: '2';
+}
+.pgn .board .row.r3:after {
+  content: '3';
+}
+.pgn .board .row.r4:after {
+  content: '4';
+}
+.pgn .board .row.r5:after {
+  content: '5';
+}
+.pgn .board .row.r6:after {
+  content: '6';
+}
+.pgn .board .row.r7:after {
+  content: '7';
+}
+.pgn .board .row.r8:after {
+  content: '8';
+}
+.pgn .board :last-child .field:after {
+  position: absolute;
+  bottom: 0.2vw;
+  right: 0.2vw;
+  height: 25%;
+  width: 100%;
+  color: black;
+  font-size: 1vw;
+  line-height: 100%;
+  text-align: right;
+}
+.pgn .board :last-child .field.a1:after {
+  content: 'a';
+}
+.pgn .board :last-child .field.b1:after {
+  content: 'b';
+}
+.pgn .board :last-child .field.c1:after {
+  content: 'c';
+}
+.pgn .board :last-child .field.d1:after {
+  content: 'd';
+}
+.pgn .board :last-child .field.e1:after {
+  content: 'e';
+}
+.pgn .board :last-child .field.f1:after {
+  content: 'f';
+}
+.pgn .board :last-child .field.g1:after {
+  content: 'g';
+}
+.pgn .board :last-child .field.h1:after {
+  content: 'h';
+}
+.pgn .board :last-child .field.a8:after {
+  content: 'a';
+}
+.pgn .board :last-child .field.b8:after {
+  content: 'b';
+}
+.pgn .board :last-child .field.c8:after {
+  content: 'c';
+}
+.pgn .board :last-child .field.d8:after {
+  content: 'd';
+}
+.pgn .board :last-child .field.e8:after {
+  content: 'e';
+}
+.pgn .board :last-child .field.f8:after {
+  content: 'f';
+}
+.pgn .board :last-child .field.g8:after {
+  content: 'g';
+}
+.pgn .board :last-child .field.h8:after {
+  content: 'h';
 }
 .pgn .board .field {
   display: inline-block;
