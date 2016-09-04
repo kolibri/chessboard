@@ -2,7 +2,7 @@
 
 A (very) simple PGN viewer in JavaScript
 
-*ATTENTION: I'm not a JS developer. I hacked this together only for my purporse. So, pull request, suggestions and other kinds of feedback are VERY, VERY welcome!!!*
+*ATTENTION: I'm not a JS/CSS developer. I hacked this together only for my purporse. So, pull request, suggestions and other kinds of feedback are VERY, VERY welcome!!! Just [create an issue](https://github.com/kolibri/chessboard/issues/new) here on github*
 
 ## Demo
 
@@ -13,39 +13,6 @@ Check [kolibri.github.io/chessboard/](https://kolibri.github.io/chessboard/) or 
 Include `chessboard.js` and `chess.js`(from [chess.js](https://github.com/jhlywa/chess.js)) in your HMTL.
 
 Add  `div`s with class `pgn`, that contains a PGN string.
-
-There is some configuration available with `data`-attributes at the div:
-
-Example with default values:
-```html
-<div
-    class="pgn"
-    data-label-next="next"
-    data-label-back="back"
-    data-label-reset="reset"
-    data-ply=""
-    data-headers="White,Black,Date,Event,Result"
-    data-show-moves="true"
-    data-show-buttons="true"
-    data-show-header="true"
->[pgn]</div>
-```
-
-`data-label-next`: text for the "next" button
-
-`data-label-back`: text for the "back" button
-
-`data-label-reset`: tex for the "reset" button
-
-`data-ply`: halfmove to display at first rendering
-
-`data-headers`: List of headers, that should be show. Notice, that they start with a capital letter, and you only can print out headers, that are given in the pgn string.
-
-`data-show-moves`: Set this to `"false"` to hide moves.
-
-`data-show-buttons`: Set this to `"false"` to hide buttons
-
-`data-show-header`: Set this to `"false"` to hide headers
 
 ## Example
 
@@ -82,13 +49,43 @@ Example with default values:
 </html>
 ```
 
-## Get into it:
+## Customizations / Get into it:
 
-The board build from two parts:
+### Data Attributes
+
+There is some configuration available with `data`-attributes at the div:
+
+Example with default values:
+```html
+<div
+    class="pgn"
+    data-label-next="next"
+    data-label-back="back"
+    data-label-reset="reset"
+    data-ply=""
+    data-headers="White,Black,Date,Event,Result"
+    data-show-moves="true"
+    data-show-buttons="true"
+    data-show-header="true"
+>[pgn]</div>
+```
+
+- `data-label-next`: text for the "next" button
+- `data-label-back`: text for the "back" button
+- `data-label-reset`: tex for the "reset" button
+- `data-ply`: halfmove to display at first rendering
+- `data-headers`: List of headers, that should be show. Notice, that they start with a capital letter, and you only can print out headers, that are given in the pgn string.
+- `data-show-moves`: Set this to `"false"` to hide moves.
+- `data-show-buttons`: Set this to `"false"` to hide buttons
+- `data-show-header`: Set this to `"false"` to hide headers
+
+### Styling
+
+The board builds from two parts:
 
 1. The JavaScript, that transforms the PGN string into HTML objects, representing a chessboard, clickable moves, header and the buttons.
 
-2. The [less](http://lesscss.org/)/CSS, that does the whole styling. This includes: The chess pieces (rendered as `:after`-Attributes with `content` and the unicode for the piece), coordinates on the board, etc.
+2. The [less](http://lesscss.org/)/CSS, that does the whole styling. This includes: The chess pieces (rendered with `:after`-selector with `content` attribute), coordinates on the board, etc.
 
 This means, if you want to customize the view of the board, you have to deal with less/CSS. Here a quick introduction:
 
