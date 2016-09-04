@@ -114,13 +114,13 @@ You can replace them with you own images by setting them as background for the f
 
 ```css
 /* adjust background colors of fields */
-.custom-board .field.white { background-color: #FF0; }
-.custom-board .field.black { background-color: #00F; }
+.field.white { background-color: #FF0; }
+.field.black { background-color: #00F; }
 
 /* disable unicode pieces, sorry for !important */
-.custom-board .field:after {content: '' !important;}
+.field:after {content: '' !important;}
 /* general field config */
-.custom-board .field {
+.field {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -128,29 +128,29 @@ You can replace them with you own images by setting them as background for the f
 /* set background images for each piece */
 /* Note, that fields has class ".field" AND the piece-class */
 /* white king */
-.custom-board .field.wk { background-image: url('img/wk.png'); }
+.field.wk { background-image: url('img/wk.png'); }
 /* white queen */
-.custom-board .field.wq { background-image: url('img/wq.png'); }
+.field.wq { background-image: url('img/wq.png'); }
 /* white rook */
-.custom-board .field.wr { background-image: url('img/wr.png'); }
+.field.wr { background-image: url('img/wr.png'); }
 /* white bishop */
-.custom-board .field.wb { background-image: url('img/wb.png'); }
+.field.wb { background-image: url('img/wb.png'); }
 /* white kNight */
-.custom-board .field.wn { background-image: url('img/wn.png'); }
+.field.wn { background-image: url('img/wn.png'); }
 /* white pawn */
-.custom-board .field.wp { background-image: url('img/wp.png'); }
+.field.wp { background-image: url('img/wp.png'); }
 /* black king */
-.custom-board .field.bk { background-image: url('img/bk.png'); }
+.field.bk { background-image: url('img/bk.png'); }
 /* black queen */
-.custom-board .field.bq { background-image: url('img/bq.png'); }
+.field.bq { background-image: url('img/bq.png'); }
 /* black rook */
-.custom-board .field.br { background-image: url('img/br.png'); }
+.field.br { background-image: url('img/br.png'); }
 /* black bishop */
-.custom-board .field.bb { background-image: url('img/bb.png'); }
+.field.bb { background-image: url('img/bb.png'); }
 /* black kNight */
-.custom-board .field.bn { background-image: url('img/bn.png'); }
+.field.bn { background-image: url('img/bn.png'); }
 /* black pawn */
-.custom-board .field.bp { background-image: url('img/bp.png'); }
+.field.bp { background-image: url('img/bp.png'); }
 ```
 
 
