@@ -1,6 +1,9 @@
+.pgn {
+  clear: both;
+}
 .pgn .board {
-  width: 25vw;
-  height: 25vw;
+  width: 16em;
+  height: 16em;
   border: black solid 1px;
   float: left;
   background-color: #white;
@@ -11,97 +14,99 @@
   margin: 0;
   padding: 0;
 }
-.pgn .board .row:after {
+.pgn .board .row:before {
   position: absolute;
-  top: 0.2vw;
-  left: 0.2vw;
+  top: 0.2em;
+  left: 0.2em;
   height: 100%;
   width: 3.125%;
   color: black;
-  font-size: 1vw;
+  font-size: 0.7em;
   text-align: left;
+  z-index: 2;
 }
-.pgn .board .row.r1:after {
+.pgn .board .row.r1:before {
   content: '1';
 }
-.pgn .board .row.r2:after {
+.pgn .board .row.r2:before {
   content: '2';
 }
-.pgn .board .row.r3:after {
+.pgn .board .row.r3:before {
   content: '3';
 }
-.pgn .board .row.r4:after {
+.pgn .board .row.r4:before {
   content: '4';
 }
-.pgn .board .row.r5:after {
+.pgn .board .row.r5:before {
   content: '5';
 }
-.pgn .board .row.r6:after {
+.pgn .board .row.r6:before {
   content: '6';
 }
-.pgn .board .row.r7:after {
+.pgn .board .row.r7:before {
   content: '7';
 }
-.pgn .board .row.r8:after {
+.pgn .board .row.r8:before {
   content: '8';
 }
-.pgn .board :last-child .field:after {
+.pgn .board .field:before {
   position: absolute;
-  bottom: 0.2vw;
-  right: 0.2vw;
+  bottom: 0.3em;
+  right: 0.3em;
   height: 25%;
   width: 100%;
   color: black;
-  font-size: 1vw;
+  font-size: 0.7em;
   line-height: 100%;
   text-align: right;
+  z-index: 2;
 }
-.pgn .board :last-child .field.a1:after {
+.pgn .board :last-child .field.a1:before {
   content: 'a';
 }
-.pgn .board :last-child .field.b1:after {
+.pgn .board :last-child .field.b1:before {
   content: 'b';
 }
-.pgn .board :last-child .field.c1:after {
+.pgn .board :last-child .field.c1:before {
   content: 'c';
 }
-.pgn .board :last-child .field.d1:after {
+.pgn .board :last-child .field.d1:before {
   content: 'd';
 }
-.pgn .board :last-child .field.e1:after {
+.pgn .board :last-child .field.e1:before {
   content: 'e';
 }
-.pgn .board :last-child .field.f1:after {
+.pgn .board :last-child .field.f1:before {
   content: 'f';
 }
-.pgn .board :last-child .field.g1:after {
+.pgn .board :last-child .field.g1:before {
   content: 'g';
 }
-.pgn .board :last-child .field.h1:after {
+.pgn .board :last-child .field.h1:before {
   content: 'h';
 }
-.pgn .board :last-child .field.a8:after {
+.pgn .board :last-child .field.a8:before {
   content: 'a';
 }
-.pgn .board :last-child .field.b8:after {
+.pgn .board :last-child .field.b8:before {
   content: 'b';
 }
-.pgn .board :last-child .field.c8:after {
+.pgn .board :last-child .field.c8:before {
   content: 'c';
 }
-.pgn .board :last-child .field.d8:after {
+.pgn .board :last-child .field.d8:before {
   content: 'd';
 }
-.pgn .board :last-child .field.e8:after {
+.pgn .board :last-child .field.e8:before {
   content: 'e';
 }
-.pgn .board :last-child .field.f8:after {
+.pgn .board :last-child .field.f8:before {
   content: 'f';
 }
-.pgn .board :last-child .field.g8:after {
+.pgn .board :last-child .field.g8:before {
   content: 'g';
 }
-.pgn .board :last-child .field.h8:after {
+.pgn .board :last-child .field.h8:before {
   content: 'h';
 }
 .pgn .board .field {
@@ -110,65 +115,66 @@
   height: 100%;
   margin: 0;
   padding: 0;
-  font-size: 3.125vw;
-  line-height: 100%;
   position: relative;
 }
-.pgn .board .field:before {
+.pgn .board .field:after {
   position: absolute;
   top: 0;
   left: 0;
-  text-align: center;
   width: 100%;
+  height: 100%;
+  font-size: 2em;
+  text-align: center;
+  line-height: 100%;
 }
 @-moz-document url-prefix() {
-  .pgn .board .field {
+  .pgn .board .field:after {
     line-height: 125%;
   }
 }
 .pgn .board .black {
   background-color: grey;
 }
-.pgn .board .wk:before {
+.pgn .board .wk:after {
   content: '\2654';
 }
-.pgn .board .wq:before {
+.pgn .board .wq:after {
   content: '\2655';
 }
-.pgn .board .wr:before {
+.pgn .board .wr:after {
   content: '\2656';
 }
-.pgn .board .wb:before {
+.pgn .board .wb:after {
   content: '\2657';
 }
-.pgn .board .wn:before {
+.pgn .board .wn:after {
   content: '\2658';
 }
-.pgn .board .wp:before {
+.pgn .board .wp:after {
   content: '\2659';
 }
-.pgn .board .bk:before {
+.pgn .board .bk:after {
   content: '\265A';
 }
-.pgn .board .bq:before {
+.pgn .board .bq:after {
   content: '\265B';
 }
-.pgn .board .br:before {
+.pgn .board .br:after {
   content: '\265C';
 }
-.pgn .board .bb:before {
+.pgn .board .bb:after {
   content: '\265D';
 }
-.pgn .board .bn:before {
+.pgn .board .bn:after {
   content: '\265E';
 }
-.pgn .board .bp:before {
+.pgn .board .bp:after {
   content: '\265F';
 }
 .pgn .moves {
   margin: 0;
-  margin-left: 26vw;
-  height: 25vw;
+  margin-left: 9em;
+  height: 16em;
   overflow: auto;
 }
 .pgn .moves li {

@@ -65,7 +65,9 @@ window.onload=function(){
             ? pgn.dataset.headers.split(',') 
             : ['White', 'Black', 'Date', 'Event', 'Result']
 
-        if (!chess.load_pgn(pgn.innerHTML.trim())) {
+        var pgnString = pgn.innerHTML.trim().replace(/^\s+/gm, '')
+
+        if (!chess.load_pgn(pgnString)) {
             return
         }
 

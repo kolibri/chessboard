@@ -1,7 +1,8 @@
 .pgn {
+    clear: both;
     .board {
-        width: 25vw;
-        height: 25vw;
+        width: 16em;
+        height: 16em;
         border: black solid 1px;
         float: left;
         background-color: #white;
@@ -12,55 +13,59 @@
             margin: 0;
             padding: 0;
         }
-        .row:after {
+        .row:before {
             position: absolute;
-            top: 0.2vw;
-            left: 0.2vw;
+            top: 0.2em;
+            left: 0.2em;
             height: 100%;
             width: 3.125%;
             color: black;
-            font-size: 1vw;
+            font-size: 0.7em;
             text-align: left;
+            z-index: 2;
+
         }
-        .row.r1:after { content: '1'; }
-        .row.r2:after { content: '2'; }
-        .row.r3:after { content: '3'; }
-        .row.r4:after { content: '4'; }
-        .row.r5:after { content: '5'; }
-        .row.r6:after { content: '6'; }
-        .row.r7:after { content: '7'; }
-        .row.r8:after { content: '8'; }
+        .row.r1:before { content: '1'; }
+        .row.r2:before { content: '2'; }
+        .row.r3:before { content: '3'; }
+        .row.r4:before { content: '4'; }
+        .row.r5:before { content: '5'; }
+        .row.r6:before { content: '6'; }
+        .row.r7:before { content: '7'; }
+        .row.r8:before { content: '8'; }
+
+        .field:before {
+            position: absolute;
+            bottom: 0.3em;
+            right: 0.3em;
+            height: 25%;
+            width: 100%;
+            color: black;
+            font-size: 0.7em;
+            line-height: 100%;
+            text-align: right;
+            z-index: 2;
+        }
 
         :last-child {
-            .field:after {
-                position: absolute;
-                bottom: 0.2vw;
-                right: 0.2vw;
-                height: 25%;
-                width: 100%;
-                color: black;
-                font-size: 1vw;
-                line-height: 100%;
-                text-align: right;
-            }
-            
-            .field.a1:after { content: 'a'; }
-            .field.b1:after { content: 'b'; }
-            .field.c1:after { content: 'c'; }
-            .field.d1:after { content: 'd'; }
-            .field.e1:after { content: 'e'; }
-            .field.f1:after { content: 'f'; }
-            .field.g1:after { content: 'g'; }
-            .field.h1:after { content: 'h'; }
 
-            .field.a8:after { content: 'a'; }
-            .field.b8:after { content: 'b'; }
-            .field.c8:after { content: 'c'; }
-            .field.d8:after { content: 'd'; }
-            .field.e8:after { content: 'e'; }
-            .field.f8:after { content: 'f'; }
-            .field.g8:after { content: 'g'; }
-            .field.h8:after { content: 'h'; }
+            .field.a1:before { content: 'a'; }
+            .field.b1:before { content: 'b'; }
+            .field.c1:before { content: 'c'; }
+            .field.d1:before { content: 'd'; }
+            .field.e1:before { content: 'e'; }
+            .field.f1:before { content: 'f'; }
+            .field.g1:before { content: 'g'; }
+            .field.h1:before { content: 'h'; }
+
+            .field.a8:before { content: 'a'; }
+            .field.b8:before { content: 'b'; }
+            .field.c8:before { content: 'c'; }
+            .field.d8:before { content: 'd'; }
+            .field.e8:before { content: 'e'; }
+            .field.f8:before { content: 'f'; }
+            .field.g8:before { content: 'g'; }
+            .field.h8:before { content: 'h'; }
         }
 
         .field {
@@ -69,22 +74,22 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            font-size: 3.125vw;
-            line-height: 100%;
             position: relative;
-            //text-indent: -99999vw;
         }
 
-        .field:before {
+        .field:after {
             position: absolute;
             top: 0;
             left: 0;
-            text-align: center;
             width: 100%;
+            height: 100%;
+            font-size: 2em;
+            text-align: center;
+            line-height: 100%;
         }
 
         @-moz-document url-prefix() {
-            .field {
+            .field:after {
                 line-height: 125%;
             }
         }
@@ -93,29 +98,25 @@
         {
             background-color: grey;
         }
-        .wk:before { content: '\2654'; }
-        .wq:before { content: '\2655'; }
-        .wr:before { content: '\2656'; }
-        .wb:before { content: '\2657'; }
-        .wn:before { content: '\2658'; }
-        .wp:before { content: '\2659'; }
-        .bk:before { content: '\265A'; }
-        .bq:before { content: '\265B'; }
-        .br:before { content: '\265C'; }
-        .bb:before { content: '\265D'; }
-        .bn:before { content: '\265E'; }
-        .bp:before { content: '\265F'; }
-
-
+        .wk:after { content: '\2654'; }
+        .wq:after { content: '\2655'; }
+        .wr:after { content: '\2656'; }
+        .wb:after { content: '\2657'; }
+        .wn:after { content: '\2658'; }
+        .wp:after { content: '\2659'; }
+        .bk:after { content: '\265A'; }
+        .bq:after { content: '\265B'; }
+        .br:after { content: '\265C'; }
+        .bb:after { content: '\265D'; }
+        .bn:after { content: '\265E'; }
+        .bp:after { content: '\265F'; }
     }
-
 
     .moves {
         margin: 0;
-        margin-left: 26vw;
-        height: 25vw;
+        margin-left: 9em;
+        height: 16em;
         overflow: auto;
-
 
         li {
             margin-left: 0.5em;
