@@ -58,11 +58,11 @@ window.onload=function(){
         var labelTurn = pgn.dataset.labelTurn 
             ? pgn.dataset.labelTurn 
             : 'turn'
-        var startAtPly = pgn.dataset.ply 
+        var ply = pgn.dataset.ply 
             ? parseInt(pgn.dataset.ply) 
             : false
-        var displayHeaders = pgn.dataset.headers 
-            ? pgn.dataset.headers.split(',') 
+        var displayHeaders = pgn.dataset.displayHeaders 
+            ? pgn.dataset.displayHeaders.split(',') 
             : ['White', 'Black', 'Date', 'Event', 'Result']
 
         var pgnString = pgn.innerHTML.trim().replace(/^\s+/gm, '')
@@ -77,8 +77,8 @@ window.onload=function(){
         }
 
         var moves = chess.history({ verbose: true })
-        var currentMoveIndex = (false !== startAtPly) 
-            ? startAtPly 
+        var currentMoveIndex = (false !== ply) 
+            ? ply 
             : moves.length
 
         function drawPieces(board) {
