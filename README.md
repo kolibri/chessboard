@@ -1,8 +1,8 @@
 # Chessboard
 
-A (very) simple PGN viewer in JavaScript
+A simple PGN viewer in JavaScript and CSS. Minimalistic, but configurable.
 
-*ATTENTION: I'm not a JS/CSS developer. I hacked this together only for my purporse. So, pull request, suggestions and other kinds of feedback are VERY, VERY welcome!!! Just [create an issue](https://github.com/kolibri/chessboard/issues/new) here on github*
+*NOTICE: I'm not a JS/CSS developer. I hacked this together only for my purporse. So, pull request, suggestions and other kinds of feedback are VERY, VERY welcome!!! Just [create an issue](https://github.com/kolibri/chessboard/issues/new) on github or contact me on twitter [@ko_libri](https://twitter.com/ko_libri)*
 
 ## Demo
 
@@ -55,26 +55,33 @@ Add  `div`s with class `pgn`, that contains a PGN string.
 
 There is some configuration available with `data`-attributes at the div:
 
-Example with default values:
+#### Example with default values
+
 ```html
 <div
     class="pgn"
     data-label-next="next"
     data-label-back="back"
     data-label-reset="reset"
+    data-label-turn="turn"
+    data-reversed="false"
     data-ply=""
-    data-headers="White,Black,Date,Event,Result"
+    data-display-headers="White,Black,Date,Event,Result"
     data-show-moves="true"
     data-show-buttons="true"
     data-show-header="true"
 >[pgn]</div>
 ```
 
+#### Description
+
 - `data-label-next`: text for the "next" button
 - `data-label-back`: text for the "back" button
-- `data-label-reset`: tex for the "reset" button
+- `data-label-reset`: text for the "reset" button
+- `data-label-turn`: text for the "turn board" button
+- `data-reversed`: Set this to `"true"` to flip the board
 - `data-ply`: halfmove to display at first rendering
-- `data-headers`: List of headers, that should be show. Notice, that they start with a capital letter, and you only can print out headers, that are given in the pgn string.
+- `data-display-headers`: List of headers, that should be show. Notice, that they start with a capital letter, and you only can print out headers, that are present in the pgn string.
 - `data-show-moves`: Set this to `"false"` to hide moves.
 - `data-show-buttons`: Set this to `"false"` to hide buttons
 - `data-show-header`: Set this to `"false"` to hide headers
@@ -109,8 +116,8 @@ To Change the size of the board, you have to set at least these variables:
 
 ### Change pieces
 
-The default pieces are hte unicode symboly of the current font type.
-You can replace them with you own images by setting them as background for the fields:
+The default pieces are the unicode symbols of the current font type.
+You can replace them with your own images by setting them as background for the fields:
 
 ```css
 /* adjust background colors of fields */

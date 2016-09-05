@@ -132,14 +132,11 @@ window.onload=function(){
 
             for(y in rows) {
                 var row = document.createElement('div')
-                row.classList.add('row')
-                row.classList.add('r' + rows[y])
+                row.classList.add('row', 'r' + rows[y])
                 for (x in cols) {
                     var field = document.createElement('div')
                     var fieldname = cols[x] + rows[y]
-                    field.classList.add('field')
-                    field.classList.add(fieldname)
-                    field.classList.add(color)
+                    field.classList.add('field', fieldname, color)
                     color = (color == 'white') ? 'black' : 'white'
                     row.appendChild(field)
                 }
