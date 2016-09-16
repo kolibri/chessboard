@@ -25,7 +25,6 @@ window.onload=function(){
             callback.call(scope, i, array[i])
         }
     }
-
     var Chessboard = function(pgn) {
         var that = this
         
@@ -64,6 +63,9 @@ window.onload=function(){
         var displayHeaders = pgn.dataset.displayHeaders 
             ? pgn.dataset.displayHeaders.split(',') 
             : ['White', 'Black', 'Date', 'Event', 'Result']
+        var pieceNames = pgn.dataset.pieceNames 
+            ? JSON.parse(pgn.dataset.pieceNames) 
+            : {'k': 'K', 'q': 'Q', 'b': 'B', 'n': 'N', 'r': 'R', 'p': ''}
 
         var pgnString = pgn.innerHTML.trim().replace(/^\s+/gm, '')
 
@@ -106,7 +108,7 @@ window.onload=function(){
                 moveString = 'O-O-O'
             } else {
                 moveString = 
-                    (('p' != move.piece) ? move.piece.toUpperCase() : '') +                        // piece name
+                    pieceNames[move.piece] +                                                       // piece name
                     move.from  +                                                                   // from field
                     ((0 <= move.flags.indexOf('c') || 0 <= move.flags.indexOf('e')) ? 'x' : '-') + // capture sign
                     move.to +                                                                      // target field

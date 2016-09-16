@@ -70,6 +70,7 @@ There is some configuration available with `data`-attributes at the div:
     data-show-moves="true"
     data-show-buttons="true"
     data-show-header="true"
+    data-piece-names='{"k": "K", "q": "Q", "b": "B", "n": "N", "r": "R", "p": ""}'
 >[pgn]</div>
 ```
 
@@ -85,6 +86,7 @@ There is some configuration available with `data`-attributes at the div:
 - `data-show-moves`: Set this to `"false"` to hide moves.
 - `data-show-buttons`: Set this to `"false"` to hide buttons
 - `data-show-header`: Set this to `"false"` to hide headers
+- `data-piece-names`: Set piece names for notation. Usefull for translations **IMPORTANT**: Use Double Quotes *inside* the JSON string, and single quotes *outside*
 
 ### Styling
 
