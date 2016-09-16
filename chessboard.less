@@ -1,10 +1,8 @@
 .pgn {
-    clear: both;
     .board {
         width: 16em;
         height: 16em;
         border: black solid 1px;
-        float: left;
         background-color: #white;
 
         .row { 
@@ -113,27 +111,15 @@
     }
 
     .moves {
-        margin: 0;
-        margin-left: 9em;
-        height: 16em;
-        overflow: auto;
-
         li {
-            margin-left: 0.5em;
-
             span {
-                margin-right: 0.5em;
                 cursor: pointer;
+                margin-right: 0.5em;
             }
 
             span:hover {
                 text-decoration: underline;
             }
         }
-    }
-
-    .buttons {
-        clear: both;
-        margin-top: 1em;
     }
 }

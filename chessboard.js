@@ -267,12 +267,12 @@ window.onload=function(){
 
             pgn.appendChild(board)
 
-            if (true == showMoves) {
-                pgn.appendChild(getMoves(board))
+            if (true == showButtons) {
+                pgn.appendChild(getButtons(board))
             }
 
             if (true == showMoves) {
-                pgn.appendChild(getButtons(board))
+                pgn.appendChild(getMoves(board))
             }
         }
 

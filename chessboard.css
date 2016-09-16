@@ -1,11 +1,7 @@
-.pgn {
-  clear: both;
-}
 .pgn .board {
   width: 16em;
   height: 16em;
   border: black solid 1px;
-  float: left;
   background-color: #white;
 }
 .pgn .board .row {
@@ -171,23 +167,10 @@
 .pgn .board .bp:after {
   content: '\265F';
 }
-.pgn .moves {
-  margin: 0;
-  margin-left: 9em;
-  height: 16em;
-  overflow: auto;
-}
-.pgn .moves li {
-  margin-left: 0.5em;
-}
 .pgn .moves li span {
-  margin-right: 0.5em;
   cursor: pointer;
+  margin-right: 0.5em;
 }
 .pgn .moves li span:hover {
   text-decoration: underline;
-}
-.pgn .buttons {
-  clear: both;
-  margin-top: 1em;
 }
