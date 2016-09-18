@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-window.onload=function(){
+document.addEventListener("DOMContentLoaded", function() {
     var forEach = function (array, callback, scope) {
         for (var i = 0; i < array.length; i++) {
             callback.call(scope, i, array[i])
@@ -286,4 +286,4 @@ window.onload=function(){
         board = new Chessboard(pgn)
         board.init()
     })
-}
+})
