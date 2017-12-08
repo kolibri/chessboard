@@ -26,8 +26,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     var Chessboard = function(pgn) {
-        var that = this
-        
         var chess = new Chess()
         var cols = ['a','b','c','d','e','f','g','h']
         var rows = [8,7,6,5,4,3,2,1]
@@ -73,6 +71,9 @@ document.addEventListener("DOMContentLoaded", function() {
             return
         }
 
+        var boardDiv = document.createElement('div')
+        pgn.parentNode.insertBefore(boardDiv, pgn)
+
         if (reversed) {
             rows.reverse()
             cols.reverse()
@@ -84,8 +85,8 @@ document.addEventListener("DOMContentLoaded", function() {
             : moves.length
 
         function drawPieces(board) {
-            for(y in rows) {
-                for (x in cols) {
+            for(var y in rows) {
+                for (var x in cols) {
                     var fieldname = cols[x] + rows[y]
                     var field = board.querySelector('.' + fieldname)
                     var piece = chess.get(fieldname)
@@ -128,21 +129,21 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         function getBoard() {
-            board = document.createElement('div')
+            var board = document.createElement('div')
             board.classList.add('board')
             var color = 'white'
 
-            for(y in rows) {
+            for(var y in rows) {
                 var row = document.createElement('div')
                 row.classList.add('row', 'r' + rows[y])
                 for (x in cols) {
                     var field = document.createElement('div')
                     var fieldname = cols[x] + rows[y]
                     field.classList.add('field', fieldname, color)
-                    color = (color == 'white') ? 'black' : 'white'
+                    color = (color === 'white') ? 'black' : 'white'
                     row.appendChild(field)
                 }
-                color = (color == 'white') ? 'black' : 'white'
+                color = (color === 'white') ? 'black' : 'white'
                 board.appendChild(row)
             }
 
@@ -179,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var movesList = document.createElement('ol')
             movesList.classList.add('moves')
             for (m in moves) {
-                if ('w' == moves[m].color) {
+                if ('w' === moves[m].color) {
                     var moveLi = document.createElement('li')
                     movesList.appendChild(moveLi)
                 }
@@ -192,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     drawPieces(board)
                 })
 
-                if (currentMoveIndex - 1 == moveSpan.dataset.move) {
+                if (currentMoveIndex - 1 === moveSpan.dataset.move) {
                     moveSpan.classList.add('current')
                 }
 
@@ -257,22 +258,26 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         function render() {
-            pgn.innerHTML = ''
-            if (true == showHeader) {
-                pgn.appendChild(drawHeader())
+            pgn.style.display = 'none'
+            boardDiv.classList = pgn.classList
+            boardDiv.classList.remove('pgn')
+            boardDiv.classList.add('pgn-board')
+
+            if (true === showHeader) {
+                boardDiv.appendChild(drawHeader())
             }
             gotoMove(currentMoveIndex)
             var board = getBoard()
             drawPieces(board)
 
-            pgn.appendChild(board)
+            boardDiv.appendChild(board)
 
-            if (true == showButtons) {
-                pgn.appendChild(getButtons(board))
+            if (true === showButtons) {
+                boardDiv.appendChild(getButtons(board))
             }
 
-            if (true == showMoves) {
-                pgn.appendChild(getMoves(board))
+            if (true === showMoves) {
+                boardDiv.appendChild(getMoves(board))
             }
         }
 
@@ -283,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     forEach(document.querySelectorAll('.pgn'), function (index, pgn) {
-        board = new Chessboard(pgn)
+        var board = new Chessboard(pgn)
         board.init()
     })
 })

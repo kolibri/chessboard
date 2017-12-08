@@ -1,17 +1,17 @@
-.pgn .board {
+.pgn-board .board {
   width: 16em;
   height: 16em;
   border: black solid 1px;
   background-color: #white;
 }
-.pgn .board .row {
+.pgn-board .board .row {
   position: relative;
   height: 12.5%;
   width: 100%;
   margin: 0;
   padding: 0;
 }
-.pgn .board .row:before {
+.pgn-board .board .row:before {
   position: absolute;
   top: 0.2em;
   left: 0.2em;
@@ -22,31 +22,31 @@
   text-align: left;
   z-index: 2;
 }
-.pgn .board .row.r1:before {
+.pgn-board .board .row.r1:before {
   content: '1';
 }
-.pgn .board .row.r2:before {
+.pgn-board .board .row.r2:before {
   content: '2';
 }
-.pgn .board .row.r3:before {
+.pgn-board .board .row.r3:before {
   content: '3';
 }
-.pgn .board .row.r4:before {
+.pgn-board .board .row.r4:before {
   content: '4';
 }
-.pgn .board .row.r5:before {
+.pgn-board .board .row.r5:before {
   content: '5';
 }
-.pgn .board .row.r6:before {
+.pgn-board .board .row.r6:before {
   content: '6';
 }
-.pgn .board .row.r7:before {
+.pgn-board .board .row.r7:before {
   content: '7';
 }
-.pgn .board .row.r8:before {
+.pgn-board .board .row.r8:before {
   content: '8';
 }
-.pgn .board .field:before {
+.pgn-board .board .field:before {
   position: absolute;
   bottom: 0.3em;
   right: 0.3em;
@@ -58,55 +58,55 @@
   text-align: right;
   z-index: 2;
 }
-.pgn .board :last-child .field.a1:before {
+.pgn-board .board :last-child .field.a1:before {
   content: 'a';
 }
-.pgn .board :last-child .field.b1:before {
+.pgn-board .board :last-child .field.b1:before {
   content: 'b';
 }
-.pgn .board :last-child .field.c1:before {
+.pgn-board .board :last-child .field.c1:before {
   content: 'c';
 }
-.pgn .board :last-child .field.d1:before {
+.pgn-board .board :last-child .field.d1:before {
   content: 'd';
 }
-.pgn .board :last-child .field.e1:before {
+.pgn-board .board :last-child .field.e1:before {
   content: 'e';
 }
-.pgn .board :last-child .field.f1:before {
+.pgn-board .board :last-child .field.f1:before {
   content: 'f';
 }
-.pgn .board :last-child .field.g1:before {
+.pgn-board .board :last-child .field.g1:before {
   content: 'g';
 }
-.pgn .board :last-child .field.h1:before {
+.pgn-board .board :last-child .field.h1:before {
   content: 'h';
 }
-.pgn .board :last-child .field.a8:before {
+.pgn-board .board :last-child .field.a8:before {
   content: 'a';
 }
-.pgn .board :last-child .field.b8:before {
+.pgn-board .board :last-child .field.b8:before {
   content: 'b';
 }
-.pgn .board :last-child .field.c8:before {
+.pgn-board .board :last-child .field.c8:before {
   content: 'c';
 }
-.pgn .board :last-child .field.d8:before {
+.pgn-board .board :last-child .field.d8:before {
   content: 'd';
 }
-.pgn .board :last-child .field.e8:before {
+.pgn-board .board :last-child .field.e8:before {
   content: 'e';
 }
-.pgn .board :last-child .field.f8:before {
+.pgn-board .board :last-child .field.f8:before {
   content: 'f';
 }
-.pgn .board :last-child .field.g8:before {
+.pgn-board .board :last-child .field.g8:before {
   content: 'g';
 }
-.pgn .board :last-child .field.h8:before {
+.pgn-board .board :last-child .field.h8:before {
   content: 'h';
 }
-.pgn .board .field {
+.pgn-board .board .field {
   display: inline-block;
   width: 12.5%;
   height: 100%;
@@ -114,7 +114,7 @@
   padding: 0;
   position: relative;
 }
-.pgn .board .field:after {
+.pgn-board .board .field:after {
   position: absolute;
   top: 0;
   left: 0;
@@ -125,53 +125,53 @@
   line-height: 100%;
 }
 @-moz-document url-prefix() {
-  .pgn .board .field:after {
+  .pgn-board .board .field:after {
     line-height: 125%;
   }
 }
-.pgn .board .black {
+.pgn-board .board .black {
   background-color: grey;
 }
-.pgn .board .wk:after {
+.pgn-board .board .wk:after {
   content: '\2654';
 }
-.pgn .board .wq:after {
+.pgn-board .board .wq:after {
   content: '\2655';
 }
-.pgn .board .wr:after {
+.pgn-board .board .wr:after {
   content: '\2656';
 }
-.pgn .board .wb:after {
+.pgn-board .board .wb:after {
   content: '\2657';
 }
-.pgn .board .wn:after {
+.pgn-board .board .wn:after {
   content: '\2658';
 }
-.pgn .board .wp:after {
+.pgn-board .board .wp:after {
   content: '\2659';
 }
-.pgn .board .bk:after {
+.pgn-board .board .bk:after {
   content: '\265A';
 }
-.pgn .board .bq:after {
+.pgn-board .board .bq:after {
   content: '\265B';
 }
-.pgn .board .br:after {
+.pgn-board .board .br:after {
   content: '\265C';
 }
-.pgn .board .bb:after {
+.pgn-board .board .bb:after {
   content: '\265D';
 }
-.pgn .board .bn:after {
+.pgn-board .board .bn:after {
   content: '\265E';
 }
-.pgn .board .bp:after {
+.pgn-board .board .bp:after {
   content: '\265F';
 }
-.pgn .moves li span {
+.pgn-board .moves li span {
   cursor: pointer;
   margin-right: 0.5em;
 }
-.pgn .moves li span:hover {
+.pgn-board .moves li span:hover {
   text-decoration: underline;
 }
