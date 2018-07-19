@@ -3,6 +3,7 @@ import ChessjsAdapter from './ChessjsAdapter.js';
 import Board from './Board.jsx';
 import Info from './Info.jsx';
 import Moves from './Moves.jsx';
+import Controls from './Controls.jsx';
 
 export default class Pgn extends React.Component {
     constructor(props) {
@@ -28,7 +29,7 @@ export default class Pgn extends React.Component {
 
     render() {
         // console.log(this.props.pgn);
-         console.log(this.state.ply);
+         console.log('pgn render state ply', this.state.ply);
 
         return (
             <div>
@@ -36,6 +37,11 @@ export default class Pgn extends React.Component {
                     fields={this.adapter.fields(this.state.ply)} 
                     move={this.adapter.getMove(this.state.ply)}
                     key="board"/>
+                <Controls 
+                    ply={this.state.ply} 
+                    total={this.state.moves.length} 
+                    gotoMoveHandler={this.gotoMove} 
+                    key="controls" />
                 <Info infos={this.state.info} key="info"/>
                 <Moves moves={this.state.moves} onClickHandler={this.gotoMove} key="moves"/>
             </div>

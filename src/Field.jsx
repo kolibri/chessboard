@@ -4,9 +4,15 @@ import Piece from './Piece.jsx';
 export default class Field extends React.Component {
     render() {
         let piece = piece 
-        let isFromClassname = this.props.move.from === this.props.name ? 'from ' : '' ;
-        let isToClassname = this.props.move.to === this.props.name? 'to ' : '' ;
-        let classes = "field " + isFromClassname + isToClassname + this.props.name;
+
+        let classNames = [
+            'field',
+            this.props.name,
+            (this.props.move ? (this.props.move.from === this.props.name ? 'from ' : '') : ''),
+            (this.props.move ? (this.props.move.to === this.props.name? 'to ' : '') : '' )
+        ];
+
+        let classes = classNames.join(' ');
 
         return (
             <div className={classes} >

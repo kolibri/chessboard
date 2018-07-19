@@ -9,23 +9,29 @@ export default class ChessjsAdapter {
         }
 
         this.moves = this.chess.history({ verbose: true });
-        console.log(this.moves);
+        // console.log(this.moves);
     }
 
     info() {
         return this.chess.header();
     }
 
+    // ply = -1 will return start position
     fields(ply) {
         if (ply > this.moves.length) {
             console.log('ply to high');
             return;
         }        
 
-        this.chess.reset()
-        for (let n = 0; n < ply+1; n++) {
-            console.log('move: ' +  this.moves[n]);
-            this.chess.move(this.moves[n]);
+        this.chess.reset();
+        console.log(ply);
+        console.log('condition', !(ply < 0));
+        if (!(ply < 0)) {
+        console.log('true');
+            for (let n = 0; n < ply+1; n++) {
+                // console.log('move: ' +  this.moves[n]);
+                this.chess.move(this.moves[n]);
+            }
         }
 
         let i = 0;
