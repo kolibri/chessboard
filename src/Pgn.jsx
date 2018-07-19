@@ -40,10 +40,14 @@ export default class Pgn extends React.Component {
                 <Controls 
                     ply={this.state.ply} 
                     total={this.state.moves.length} 
-                    gotoMoveHandler={this.gotoMove} 
+                    gotoMoveHandler={this.gotoMove}
                     key="controls" />
                 <Info infos={this.state.info} key="info"/>
-                <Moves moves={this.state.moves} onClickHandler={this.gotoMove} key="moves"/>
+                <Moves 
+                    moves={this.state.moves} 
+                    onClickHandler={this.gotoMove}
+                    currentMove={this.state.ply}
+                    key="moves"/>
             </div>
         )
     }
