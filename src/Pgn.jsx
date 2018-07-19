@@ -1,43 +1,31 @@
 import React from 'react';
-import Chess from 'chess.js';
+import ChessjsAdapter from './ChessjsAdapter.js';
 import Board from './Board.jsx';
 import Info from './Info.jsx';
 import Moves from './Moves.jsx';
 
-
 export default class Pgn extends React.Component {
     constructor(props) {
         super(props)
+        this.adapter = new ChessjsAdapter(this.props.pgn);
 
-        let chess = new Chess();
-
-        if (!chess.load_pgn(this.props.pgn.trim().replace(/^\s+/gm, ''))) {
-            console.log('Error loading pgn');
-        }
+        let moves = this.adapter.formatedMoves();
 
         this.state = {
-            fields: this.fieldNames().map((fieldName) => ({ 
-                key: fieldName,
-                piece: chess.get(fieldName) 
-            })),
-            infos: chess.header(),
-            moves: chess.history({ verbose: true }),
-            chess: chess
+            moves: moves,
+            info: this.adapter.info(),
+            ply: this.props.ply ? parseInt(this.props.ply) : moves.length
         }
 
+        this.gotoMove = this.gotoMove.bind(this);
         // console.log(this.state);
     }
 
-    fieldNames() {
-        let i = 0;
-        let fieldNames = [];
-        for (let r of ['8', '7', '6', '5', '4', '3', '2', '1']) {
-            for (let c of ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']) {
-                fieldNames[i] = c+r;
-                i++;
-            }
-        }
-        return fieldNames;
+    gotoMove(moveIndex) {
+        console.log('gotomove moveindex: ', moveIndex);
+        console.log('gotomove state before: ', this.state);
+        this.setState({ply: moveIndex});
+        console.log('gotomove state afterwards: ', this.state);
     }
 
     render() {
@@ -46,9 +34,9 @@ export default class Pgn extends React.Component {
 
         return (
             <div>
-                <Board fields={this.state.fields} key="board"/>
-                <Info infos={this.state.infos} key="info"/>
-                <Moves moves={this.state.moves} key="moves"/>
+                <Board fields={this.adapter.fields(this.state.ply)} key="board"/>
+                <Info infos={this.state.info} key="info"/>
+                <Moves moves={this.state.moves} onClickHandler={this.gotoMove} key="moves"/>
             </div>
         )
     }
