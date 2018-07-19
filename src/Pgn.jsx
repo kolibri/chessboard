@@ -23,18 +23,19 @@ export default class Pgn extends React.Component {
 
     gotoMove(moveIndex) {
         console.log('gotomove moveindex: ', moveIndex);
-        console.log('gotomove state before: ', this.state);
         this.setState({ply: moveIndex});
-        console.log('gotomove state afterwards: ', this.state);
     }
 
     render() {
         // console.log(this.props.pgn);
-        // console.log(this.state.infos);
+         console.log(this.state.ply);
 
         return (
             <div>
-                <Board fields={this.adapter.fields(this.state.ply)} key="board"/>
+                <Board 
+                    fields={this.adapter.fields(this.state.ply)} 
+                    move={this.adapter.getMove(this.state.ply)}
+                    key="board"/>
                 <Info infos={this.state.info} key="info"/>
                 <Moves moves={this.state.moves} onClickHandler={this.gotoMove} key="moves"/>
             </div>

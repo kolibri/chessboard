@@ -1,6 +1,7 @@
 $field-bg-black: grey;
 $field-bg-white: white;
-
+$field-bg-to: #73FDFF;
+$field-bg-from: #00FA92;
 .pgn {
     .board {
         width: 16em;
@@ -28,6 +29,12 @@ $field-bg-white: white;
         .g2, .g4, .g6, .g8, .h1, .h3, .h5, .h7
         { background-color: $field-bg-white; }
 
+        .field.to {
+            background-color: $field-bg-to !important;
+        }
+        .field.from {
+            background-color: $field-bg-from !important;
+        }
 
         .piece {
             display: inline-block;

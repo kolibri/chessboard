@@ -16,8 +16,8 @@ export default class Moves extends React.Component {
 
         for (let i=0; i < moves.length; i=i+2) {
             movePairs.push({ 
-                w: {index: i+1, move: moves[i] }, 
-                b: moves[i+1] ? {index: i+2, move: moves[i+1] }: null 
+                w: {index: i, move: moves[i] }, 
+                b: moves[i+1] ? {index: i+1, move: moves[i+1] }: null 
             });
         }
 

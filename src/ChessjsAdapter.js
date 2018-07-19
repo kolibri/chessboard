@@ -9,48 +9,25 @@ export default class ChessjsAdapter {
         }
 
         this.moves = this.chess.history({ verbose: true });
-        this.currentMoveIndex = this.moves.length;
-    }
-
-    fields(ply) {
-        if (typeof ply === 'undefined') { 
-            ply = this.currentMoveIndex;
-        }
-
-        this.gotoMove(ply);
-
-        return this.fieldNames().map((fieldName) => ({ 
-            key: fieldName,
-            piece: this.chess.get(fieldName) 
-        }))        
-    }
-
-    formatedMoves() {
-        return this.chess.history({ verbose: true }).map(move => this.formatMove(move));
+        console.log(this.moves);
     }
 
     info() {
         return this.chess.header();
     }
 
-    gotoMove(moveIndex) {
-            let moves = this.moves;
+    fields(ply) {
+        if (ply > this.moves.length) {
+            console.log('ply to high');
+            return;
+        }        
 
-            if (moveIndex > moves.length) {
-                return
-            }
+        this.chess.reset()
+        for (let n = 0; n < ply+1; n++) {
+            console.log('move: ' +  this.moves[n]);
+            this.chess.move(this.moves[n]);
+        }
 
-            this.chess.reset()
-            for (let n = 0; n < moveIndex; n++) {
-                console.log('move: ' +  moves[n]);
-                this.chess.move(moves[n]);
-            }
-            
-            console.log('gotoMove2');
-            this.currentMoveIndex = moveIndex;
-    }
-
-    fieldNames() {
         let i = 0;
         let fieldNames = [];
         for (let r of ['8', '7', '6', '5', '4', '3', '2', '1']) {
@@ -59,22 +36,31 @@ export default class ChessjsAdapter {
                 i++;
             }
         }
-        return fieldNames;
+
+        return fieldNames.map((fieldName) => ({ 
+            key: fieldName,
+            piece: this.chess.get(fieldName) 
+        }))        
     }
 
-    formatMove(move) {            
-        if (!move) {
-            return;
-        }
+    getMove(ply){
+        return this.moves[ply] ? this.moves[ply] : null;
+    }
 
-        let pieceNames = {'k': 'K', 'q': 'Q', 'b': 'B', 'n': 'N', 'r': 'R', 'p': ''};
-        var moveString = ''
+    formatedMoves() {
+        function formatMove(move) {            
+            if (!move) {
+                return;
+            }
 
-        if (0 <= move.flags.indexOf('k')) { 
-            moveString = 'O-O'
-        } else if (0 <= move.flags.indexOf('q')) {
-            moveString = 'O-O-O'
-        } else {
+            let pieceNames = {'k': 'K', 'q': 'Q', 'b': 'B', 'n': 'N', 'r': 'R', 'p': ''};
+            var moveString = ''
+
+            if (0 <= move.flags.indexOf('k')) { 
+                moveString = 'O-O'
+            } else if (0 <= move.flags.indexOf('q')) {
+                moveString = 'O-O-O'
+            } else {
             moveString = pieceNames[move.piece] +                                              // piece name
                 move.from  +                                                                   // from field
                 ((0 <= move.flags.indexOf('c') || 0 <= move.flags.indexOf('e')) ? 'x' : '-') + // capture sign
@@ -83,14 +69,16 @@ export default class ChessjsAdapter {
                 ((0 <= move.flags.indexOf('p')) ? move.promotion : '' )                        // promotion
             }
 
-        // add check and checkmate flags
-        if (0 <= move.san.indexOf('+')) {
-            moveString = moveString + '+'
-        }
-        if (0 <= move.san.indexOf('#')) {
-            moveString = moveString + '#'
-        }
+            // add check and checkmate flags
+            if (0 <= move.san.indexOf('+')) {
+                moveString = moveString + '+'
+            }
+            if (0 <= move.san.indexOf('#')) {
+                moveString = moveString + '#'
+            }
 
-        return moveString
+            return moveString
+        }
+        return this.chess.history({ verbose: true }).map(move => formatMove(move));
     }
 }
