@@ -6,6 +6,6 @@ import Pgn from './Pgn.jsx'
 document.addEventListener("DOMContentLoaded", function ()
 {
     let pgns = document.querySelectorAll('.pgn').forEach(function(pgn, key){
-        ReactDOM.render(<Pgn key={key} pgn={pgn.innerHTML} ply={24} /> , pgn)
+        ReactDOM.render(<Pgn key={key} pgn={pgn.innerHTML} ply={24} reverse={true} /> , pgn)
     });
 })

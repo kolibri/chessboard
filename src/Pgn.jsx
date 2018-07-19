@@ -15,32 +15,35 @@ export default class Pgn extends React.Component {
         this.state = {
             moves: moves,
             info: this.adapter.info(),
-            ply: this.props.ply ? parseInt(this.props.ply) : moves.length
+            ply: this.props.ply ? parseInt(this.props.ply) : moves.length,
+            reverse: this.props.reverse ? this.props.reverse : false
         }
-
+        
         this.gotoMove = this.gotoMove.bind(this);
-        // console.log(this.state);
+        this.reverse = this.reverse.bind(this);
     }
 
     gotoMove(moveIndex) {
-        console.log('gotomove moveindex: ', moveIndex);
         this.setState({ply: moveIndex});
     }
 
-    render() {
-        // console.log(this.props.pgn);
-         console.log('pgn render state ply', this.state.ply);
+    reverse(){
+        this.setState({reverse: !this.state.reverse});
+    }
 
+    render() {
         return (
             <div>
                 <Board 
                     fields={this.adapter.fields(this.state.ply)} 
                     move={this.adapter.getMove(this.state.ply)}
+                    reverse={this.state.reverse}
                     key="board"/>
                 <Controls 
                     ply={this.state.ply} 
                     total={this.state.moves.length} 
                     gotoMoveHandler={this.gotoMove}
+                    reverseHandler={this.reverse}
                     key="controls" />
                 <Info infos={this.state.info} key="info"/>
                 <Moves 

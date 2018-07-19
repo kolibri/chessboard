@@ -9,7 +9,6 @@ export default class ChessjsAdapter {
         }
 
         this.moves = this.chess.history({ verbose: true });
-        // console.log(this.moves);
     }
 
     info() {
@@ -24,12 +23,8 @@ export default class ChessjsAdapter {
         }        
 
         this.chess.reset();
-        console.log(ply);
-        console.log('condition', !(ply < 0));
         if (!(ply < 0)) {
-        console.log('true');
             for (let n = 0; n < ply+1; n++) {
-                // console.log('move: ' +  this.moves[n]);
                 this.chess.move(this.moves[n]);
             }
         }

@@ -15,7 +15,7 @@ export default class Field extends React.Component {
         let classes = classNames.join(' ');
 
         return (
-            <div className={classes} >
+            <div className={classes}>
                 {this.props.piece && <Piece color={this.props.piece.color} type={this.props.piece.type} />}
             </div>
         )

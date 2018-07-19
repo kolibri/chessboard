@@ -3,16 +3,18 @@ import Field from './Field.jsx';
 
 export default class Board extends React.Component {
     render() {
+        let fields = this.props.reverse ? this.props.fields.reverse() : this.props.fields ;
+
         return (
             <div className="board">
-                {this.props.fields.map((field) => 
-                    <Field 
-                        key={field.key} 
-                        piece={field.piece} 
-                        name={field.key} 
-                        move={this.props.move}
-                        />)}
+            {fields.map((field) => 
+                <Field 
+                key={field.key} 
+                piece={field.piece} 
+                name={field.key} 
+                move={this.props.move}
+                />)}
             </div>
-        )
+            )
     }
 }

@@ -3,11 +3,13 @@ import React from 'react';
 export default class Moves extends React.Component {
     constructor(props) {
         super(props)
-        this.clickHandler = this.clickHandler.bind(this);
+        this.moveHandler = this.moveHandler.bind(this);
+        this.reverseHandler = this.reverseHandler.bind(this);
     }
 
-    clickHandler(e) {
-        let action = e.target.dataset.action;
+    moveHandler(event) {
+        event.preventDefault();
+        let action = event.target.dataset.action;
         let moveIndex = 0;
 
         if ('back' === action) {
@@ -27,13 +29,19 @@ export default class Moves extends React.Component {
         this.props.gotoMoveHandler(moveIndex);
     }
 
+    reverseHandler (event) {
+        event.preventDefault();
+        this.props.reverseHandler();
+    }
+
     render() {
         return (
             <div>
-            <button onClick={this.clickHandler} data-action="back">back</button>
-            <button onClick={this.clickHandler} data-action="next">next</button>
-            <button onClick={this.clickHandler} data-action="start">start</button>
-            <button onClick={this.clickHandler} data-action="end">end</button>
+            <button onClick={this.moveHandler} data-action="back">back</button>
+            <button onClick={this.moveHandler} data-action="next">next</button>
+            <button onClick={this.moveHandler} data-action="start">start</button>
+            <button onClick={this.moveHandler} data-action="end">end</button>
+            <button onClick={this.reverseHandler} >turn</button>
             </div>
         )
     }
