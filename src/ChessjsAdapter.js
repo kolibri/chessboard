@@ -4,8 +4,11 @@ export default class ChessjsAdapter {
     constructor(pgn) {
         this.chess = new Chess();
 
-        if (!this.chess.load_pgn(pgn.trim().replace(/^\s+/gm, ''))) {
-            console.log('Error loading pgn');
+        this.chess.reset();
+        if (typeof pgn !== 'undefined') {
+            if (!this.chess.load_pgn(pgn.trim().replace(/^\s+/gm, ''))) {
+                console.log('Error loading pgn', pgn);
+            }
         }
 
         this.moves = this.chess.history({ verbose: true });
@@ -18,7 +21,7 @@ export default class ChessjsAdapter {
     // ply = -1 will return start position
     fields(ply) {
         if (ply > this.moves.length) {
-            console.log('ply to high');
+            console.log('ply to high', ply, this.moves.length);
             return;
         }        
 
@@ -44,11 +47,38 @@ export default class ChessjsAdapter {
         }))        
     }
 
+    field(ply, fieldName) {
+        let fields = this.fields(ply);
+        for (let field of fields) {
+            if (field.key === fieldName) {
+                return field;
+            }
+        }
+
+        return null;
+    }
+
     getMove(ply){
         return this.moves[ply] ? this.moves[ply] : null;
     }
 
-    formatedMoves(pieceNames) {
+    makeMove(ply, move) {
+        this.chess.reset();
+
+        for (let n = 0; n < ply+1; n++) {
+            this.chess.move(this.moves[n]);
+        }
+
+        if (null == this.chess.move(move)) {
+            return null;
+        }
+
+        this.moves = this.chess.history({verbose: true});
+
+        return this.moves;
+    }
+
+    translateMoves(pieceNames, moves) {
         function formatMove(move) {            
             if (!move) {
                 return;
@@ -79,6 +109,7 @@ export default class ChessjsAdapter {
 
             return moveString
         }
-        return this.chess.history({ verbose: true }).map(move => formatMove(move));
+        
+        return moves.map(move => formatMove(move));
     }
 }

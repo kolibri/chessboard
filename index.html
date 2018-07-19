@@ -11,8 +11,22 @@
     <h1>Chessboard Demo</h1>
     <a href="https://github.com/kolibri/chessboard">Github Repository</a> - 
     <a href="https://www.npmjs.com/package/chessboard">NPM Package site</a>
+
+    <h2>New Game</h2>
+    <div class="pgn"></div>
+    <div class="pgn" data-player="w">
+        [Event "Testing with player and preset"]
+        [Site "Whites move"]
+        [Date "????.??.??"]
+        [Result "*"]
+        [White "Tamara Tester"]
+        [Black "Torben Tester"]
+
+        1.e4 d5 2.exd5 Qxd5 *
+    </div>
+
     <h2>Peruvian Immortal with default options</h2>
-    <div class="pgn" id="pgn">
+    <div class="pgn">
         [Event "Simultaneous"]
         [Site "Budapest HUN"]
         [Date "1934.??.??"]
@@ -30,5 +44,27 @@
         Bxf3 8.Qxf3 Bb4 9.Be2 Nd7 10.a3 O-O-O 11.axb4 Qxa1+ 12.Kd2
         Qxh1 13.Qxc6+ bxc6 14.Ba6# 1-0
     </div>
+
+    <h1>Nunn's Immortal, no custom moves</h1>
+    <div class="pgn" data-disable-custom-moves="true">
+        [Event "02, Wijk aan Zee"]
+        [Site "Wijk aan Zee NED"]
+        [Date "1985.01.19"]
+        [EventDate "?"]
+        [Round "2"]
+        [Result "0-1"]
+        [White "Alexander Beliavsky"]
+        [Black "John Nunn"]
+        [ECO "E81"]
+        [WhiteElo "?"]
+        [BlackElo "?"]
+        [PlyCount "54"]
+
+        1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Be3 Nbd7 7.Qd2
+        c5 8.d5 Ne5 9.h3 Nh5 10.Bf2 f5 11.exf5 Rxf5 12.g4 Rxf3 13.gxh5
+        Qf8 14.Ne4 Bh6 15.Qc2 Qf4 16.Ne2 Rxf2 17.Nxf2 Nf3+ 18.Kd1 Qh4
+        19.Nd3 Bf5 20.Nec1 Nd2 21.hxg6 hxg6 22.Bg2 Nxc4 23.Qf2 Ne3+
+        24.Ke2 Qc4 25.Bf3 Rf8 26.Rg1 Nc2 27.Kd1 Bxd3 0-1
+    </div>    
 </body>
 </html>

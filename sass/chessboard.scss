@@ -2,13 +2,16 @@ $field-bg-black: grey;
 $field-bg-white: white;
 $field-bg-to: #73FDFF;
 $field-bg-from: #00FA92;
+$field-bg-selected: #00FA92;
 $moves-bg-current: #73FDFF;
 
+.game,
 .pgn {
     .board {
         width: 16em;
         height: 16em;
         border: black solid 1px;
+        font-family: "Courier New", Courier, monospace;
 
         .field {
             display: inline-block;
@@ -18,6 +21,8 @@ $moves-bg-current: #73FDFF;
             padding: 0;
             position: relative;
             float: left;
+            text-align: center;
+            font-size: 150%;
         }
         .a1, .a3, .a5, .a7, .b2, .b4, .b6, .b8, 
         .c1, .c3, .c5, .c7, .d2, .d4, .d6, .d8,
@@ -37,21 +42,12 @@ $moves-bg-current: #73FDFF;
         .field.from {
             background-color: $field-bg-from !important;
         }
-
-        .piece {
-            display: inline-block;
-            text-align: center;
-            margin: 10%;
-            padding: 0;
-            width: 80%;
-            height: 80%;
-            line-height: 100%;
-            font-size: 150%;
+        .field.selected {
+            background-color: $field-bg-selected !important;
         }
     }
 
     .info {
-
        dt {
           width: 4em;
           float: left;
