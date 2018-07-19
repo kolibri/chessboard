@@ -4,68 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chessboard Demo</title>
-    <link rel="stylesheet" href="chessboard.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
-    <!--<script src="./node_modules/chess.js/chess.js"></script>//-->
-    <script src="chessboard.js" type="text/javascript"></script>
-    <style type="text/css">
-        .custom-board {
-            display: flex;
-            flex-direction: column;
-            width: 40vw;
-        }
-        .custom-board .board {
-            width: 40vw;
-            height: 40vw;
-            float: none;
-        }
-
-        .custom-board .info dt {
-          width: 4em;
-          float: left;
-        }
-
-        .custom-board .moves {
-            margin: 0;
-            padding: 0;
-            order: 2;
-            height: auto;
-        }
-
-        .custom-board .moves li {
-            list-style-type: none;
-            display: inline-block;
-        }
-
-        .custom-board .field:after {content: '' !important;}
-        .custom-board .field.white { background-color: #FF0; }
-        .custom-board .field.black { background-color: #00F; }
-        .custom-board .field {
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-        .custom-board .field.wk { background-image: url('img/wk.png'); }
-        .custom-board .field.wq { background-image: url('img/wq.png'); }
-        .custom-board .field.wr { background-image: url('img/wr.png'); }
-        .custom-board .field.wb { background-image: url('img/wb.png'); }
-        .custom-board .field.wn { background-image: url('img/wn.png'); }
-        .custom-board .field.wp { background-image: url('img/wp.png'); }
-        .custom-board .field.bk { background-image: url('img/bk.png'); }
-        .custom-board .field.bq { background-image: url('img/bq.png'); }
-        .custom-board .field.br { background-image: url('img/br.png'); }
-        .custom-board .field.bb { background-image: url('img/bb.png'); }
-        .custom-board .field.bn { background-image: url('img/bn.png'); }
-        .custom-board .field.bp { background-image: url('img/bp.png'); }
-
-    </style>
+    <link  href="dist/chessboard.css" rel="stylesheet">
+    <script src="dist/chessboard.js" type="text/javascript"></script>
 </head>
 <body>
     <h1>Chessboard Demo</h1>
     <a href="https://github.com/kolibri/chessboard">Github Repository</a> - 
     <a href="https://www.npmjs.com/package/chessboard">NPM Package site</a>
     <h2>Peruvian Immortal with default options</h2>
-    <div class="pgn">
+    <div class="pgn" id="pgn">
         [Event "Simultaneous"]
         [Site "Budapest HUN"]
         [Date "1934.??.??"]
@@ -83,91 +30,5 @@
         Bxf3 8.Qxf3 Bb4 9.Be2 Nd7 10.a3 O-O-O 11.axb4 Qxa1+ 12.Kd2
         Qxh1 13.Qxc6+ bxc6 14.Ba6# 1-0
     </div>
-    <h1>Kasparov's Immortal with custom header, buttons, current move and reversed side and german pieces</h1>
-    <div
-        class="pgn"
-        data-label-next="&gt;&gt;"
-        data-label-back="&lt;&lt;"
-        data-label-reset="start"
-        data-label-turn="flip"
-        data-ply="2"
-        data-reversed="true"
-        data-display-headers="White,Black,Result"
-        data-piece-names='{"k": "K", "q": "D", "b": "L", "n": "S", "r": "T", "p": ""}'
-    >
-        [Event "Hoogovens A Tournament"]
-        [Site "Wijk aan Zee NED"]
-        [Date "1999.01.20"]
-        [EventDate "?"]
-        [Round "4"]
-        [Result "1-0"]
-        [White "Garry Kasparov"]
-        [Black "Veselin Topalov"]
-        [ECO "B06"]
-        [WhiteElo "2812"]
-        [BlackElo "2700"]
-        [PlyCount "87"]
-
-        1. e4 d6 2. d4 Nf6 3. Nc3 g6 4. Be3 Bg7 5. Qd2 c6 6. f3 b5
-        7. Nge2 Nbd7 8. Bh6 Bxh6 9. Qxh6 Bb7 10. a3 e5 11. O-O-O Qe7
-        12. Kb1 a6 13. Nc1 O-O-O 14. Nb3 exd4 15. Rxd4 c5 16. Rd1 Nb6
-        17. g3 Kb8 18. Na5 Ba8 19. Bh3 d5 20. Qf4+ Ka7 21. Rhe1 d4
-        22. Nd5 Nbxd5 23. exd5 Qd6 24. Rxd4 cxd4 25. Re7+ Kb6
-        26. Qxd4+ Kxa5 27. b4+ Ka4 28. Qc3 Qxd5 29. Ra7 Bb7 30. Rxb7
-        Qc4 31. Qxf6 Kxa3 32. Qxa6+ Kxb4 33. c3+ Kxc3 34. Qa1+ Kd2
-        35. Qb2+ Kd1 36. Bf1 Rd2 37. Rd7 Rxd7 38. Bxc4 bxc4 39. Qxh8
-        Rd3 40. Qa8 c3 41. Qa4+ Ke1 42. f4 f5 43. Kc1 Rd2 44. Qa7 1-0
-    </div>
-    <h1>Nunn's Immortal, just the board</h1>
-    <div
-        class="pgn"
-        data-show-moves="false"
-        data-show-buttons="false"
-        data-show-header="false"
-    >
-        [Event "02, Wijk aan Zee"]
-        [Site "Wijk aan Zee NED"]
-        [Date "1985.01.19"]
-        [EventDate "?"]
-        [Round "2"]
-        [Result "0-1"]
-        [White "Alexander Beliavsky"]
-        [Black "John Nunn"]
-        [ECO "E81"]
-        [WhiteElo "?"]
-        [BlackElo "?"]
-        [PlyCount "54"]
-
-        1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Be3 Nbd7 7.Qd2
-        c5 8.d5 Ne5 9.h3 Nh5 10.Bf2 f5 11.exf5 Rxf5 12.g4 Rxf3 13.gxh5
-        Qf8 14.Ne4 Bh6 15.Qc2 Qf4 16.Ne2 Rxf2 17.Nxf2 Nf3+ 18.Kd1 Qh4
-        19.Nd3 Bf5 20.Nec1 Nd2 21.hxg6 hxg6 22.Bg2 Nxc4 23.Qf2 Ne3+
-        24.Ke2 Qc4 25.Bf3 Rf8 26.Rg1 Nc2 27.Kd1 Bxd3 0-1
-    </div>
-
-    <h1 style="clear: both">A very custom board</h1>
-    <div class="custom-boardfoo">
-        <div class="pgn custom-board">
-            [Event "London m"]
-            [Site "London m"]
-            [Date "1866.09.??"]
-            [EventDate "?"]
-            [Round "9"]
-            [Result "1-0"]
-            [White "Wilhelm Steinitz"]
-            [Black "Henry Edward Bird"]
-            [ECO "C10"]
-            [WhiteElo "?"]
-            [BlackElo "?"]
-            [PlyCount "23"]
-
-            1.e4 e6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Nf6 5.Nxf6+ Qxf6 6.Nf3 Nc6
-            7.Bg5 Qf5 8.Bd3 Qg4 9.h3 Qxg2 10.Rh2 Qxh2 11.Nxh2 Nxd4 12.Bb5+
-            1-0
-        </div>
-    </div>
-
-<p style="clear: both">All pgn's from <a href="http://www.chessgames.com/index.html">www.chessgames.com</a>.
-<p style="clear: both">Custom pieces from <a href="https://commons.wikimedia.org/wiki/File:King_white.png">Wikimedia Commons</a>.
 </body>
 </html>
