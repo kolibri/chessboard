@@ -48,13 +48,12 @@ export default class ChessjsAdapter {
         return this.moves[ply] ? this.moves[ply] : null;
     }
 
-    formatedMoves() {
+    formatedMoves(pieceNames) {
         function formatMove(move) {            
             if (!move) {
                 return;
             }
 
-            let pieceNames = {'k': 'K', 'q': 'Q', 'b': 'B', 'n': 'N', 'r': 'R', 'p': ''};
             var moveString = ''
 
             if (0 <= move.flags.indexOf('k')) { 

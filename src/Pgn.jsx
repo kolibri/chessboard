@@ -9,8 +9,11 @@ export default class Pgn extends React.Component {
     constructor(props) {
         super(props)
         this.adapter = new ChessjsAdapter(this.props.pgn);
-
-        let moves = this.adapter.formatedMoves();
+        let moves = this.adapter.formatedMoves(
+            this.props.pieceNames ? 
+            this.props.pieceNames : 
+            {'k': 'K', 'q': 'Q', 'b': 'B', 'n': 'N', 'r': 'R', 'p': ''}
+        );
 
         this.state = {
             moves: moves,
