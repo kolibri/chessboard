@@ -1,28 +1,33 @@
 {
   "author": "Lukas Sadzik <entengelb@gmail.com>",
-  "dependencies": {
-    "chess.js": "^0.10.2"
-  },
-  "description": "Displays a chessboard based on a pgn string",
+  "name": "chessboard",
+  "description": "Displays a chessboard react component based on a pgn string",
+  "version": "1.0.0",
+  "main": "src/index.jsx",
   "keywords": [
     "chess",
     "chessboard",
-    "pgn"
+    "pgn",
+    "react"
   ],
   "license": "MIT",
-  "main": "chessboard.js",
-  "name": "chessboard",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com:kolibri/chessboard.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/encore dev"
   },
-  "version": "0.1.4",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-less": "^3.1.0",
-    "gulp-minify": "0.0.14"
+    "@symfony/webpack-encore": "^0.20.1",
+    "babel-preset-react": "^6.24.1",
+    "node-sass": "^4.9.2",
+    "sass-loader": "^7.0.3"
+  },
+  "dependencies": {
+    "chess.js": "^0.10.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
   }
 }
+
