@@ -11,7 +11,6 @@ Encore
     // .enableVersioning(Encore.isProduction())
     .addEntry('chessboard', './src/index.jsx')
     .enableSassLoader()
-    .cleanupOutputBeforeBuild()
     .enableReactPreset()
 ;
 module.exports = Encore.getWebpackConfig();

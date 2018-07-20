@@ -2,7 +2,7 @@
   "author": "Lukas Sadzik <entengelb@gmail.com>",
   "name": "chessboard",
   "description": "Displays a chessboard react component based on a pgn string",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "src/index.jsx",
   "keywords": [
     "chess",
