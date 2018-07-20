@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/kolibri/chessboard.svg?branch=master)](https://travis-ci.com/kolibri/chessboard)
+
 # Chessboard
 
 A javascript/react chessboard for displaying pgn strings
