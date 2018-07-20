@@ -6,13 +6,17 @@ import Game from './Game.jsx'
 document.addEventListener('DOMContentLoaded', function ()
 {
     let games = document.querySelectorAll('.pgn').forEach(function(game, key){
+        console.log('pieceNames', game.dataset.pieceNames);
         ReactDOM.render(
             <Game 
-            pgn={game.innerHTML}
-            player={game.dataset.player}
-            disableCustomMoves={game.dataset.disableCustomMoves === "true"}
-            pieceNames={{'k': 'K', 'q': 'D', 'b': 'L', 'n': 'S', 'r': 'T', 'p': ''}}
-            key={key} />, 
+                pgn = {game.innerHTML}
+                player = {game.dataset.player}
+                disableCustomMoves = {game.dataset.disableCustomMoves === "true"}
+                reverse = {game.dataset.reverse === "true"}
+                ply = {game.dataset.ply ? game.dataset.ply : null}
+                pieceNames = {game.dataset.pieceNames ? JSON.parse(game.dataset.pieceNames) : null}
+                key={key}
+             />, 
             game
         )
     });

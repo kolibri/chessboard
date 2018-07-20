@@ -1,8 +1,10 @@
 # Chessboard
 
-## A javascript/react chessboard for displaying pgn strings
+A javascript/react chessboard for displaying pgn strings
 
-### Usage:
+## Usage
+
+Just without anything:
 
 ```html
     <!-- include assets -->
@@ -12,7 +14,14 @@
 <body>
     <h2>Peruvian Immortal with default options</h2>
     <!-- place a div with class `pgn` and pgn string as content -->
-    <div class="pgn">
+    <div 
+        class="pgn" 
+        data-player="w"
+        data-disable-custom-moves="true"
+        data-ply="2"
+        data-reverse="true"
+        data-piece-names='{"k": "K", "q": "D", "b": "L", "n": "S", "r": "T", "p": ""}'
+    >
         [Event "Simultaneous"]
         [Site "Budapest HUN"]
         [Date "1934.??.??"]
@@ -33,3 +42,45 @@
 </body>
 </html>
 ```
+
+### `data-player="w|b"`
+
+If a player is set, game can only take moves from current player, if last move is shown.
+
+### `data-disable-custom-moves="true|false"`
+
+disables moving pieces. Only back/forward/etc are allowed.
+
+### `data-ply="{integer}"`
+
+Sets current halfmove.
+
+### `data-reverse="true|false"`
+
+flips the board to the view of black player.
+
+### `data-piece-names='{jsonString}'`
+
+JsonString has to be a map with following fields:
+
+```json
+{
+    "k": "{Kings alias}", 
+    "q": "{queens alias}", 
+    "b": "{bishops alias}", 
+    "n": "{knights alias}", 
+    "r": "{rooks alias}", 
+    "p": "{pawn alias}"
+}
+```
+
+Notice the switched quotation marks (`"|'`) at
+`data-piece-names='{"k": "K", ... "p": ""}'`.
+
+## Usage with React
+
+Have look at the `src/index.jsx`. I hope, you'll get it.
+
+
+
+
