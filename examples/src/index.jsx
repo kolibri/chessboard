@@ -1,14 +1,12 @@
-require('../sass/chessboard.scss');
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Game from './Game.jsx'
+import Pgn from '../../src'
 
 document.addEventListener('DOMContentLoaded', function ()
 {
     let games = document.querySelectorAll('.pgn').forEach(function(game, key){
-        console.log('pieceNames', game.dataset.pieceNames);
         ReactDOM.render(
-            <Game 
+            <Pgn 
                 pgn = {game.innerHTML}
                 player = {game.dataset.player}
                 disableCustomMoves = {game.dataset.disableCustomMoves === "true"}
